@@ -12,3 +12,39 @@
 #login {
 
 }
+
+#userBgJumbo{
+	background: url(../images/bg3.jpg);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-position:50% 50%;
+	top:0;
+    left:0;
+	filter: blur(5px);
+	-webkit-filter: blur(5px);
+	-moz-filter: blur(5px);
+	-o-filter: blur(5px);
+	-ms-filter: blur(5px);
+}
+
+#profileImg{
+	background: url(../images/bg1.jpg);
+	background-repeat:no-repeat;
+	width: 100%;
+	height: 100%;
+	background-position:50% 50%;
+	
+}
+
+.circletag {
+    display: block;
+    width: 200px;
+    height: 200px;
+    -moz-border-radius: 250px;
+    -webkit-border-radius: 250px;
+    background-image: url(../images/logo.png);
+    //background-position:50% 50%;
+    background-repeat:no-repeat;
+	margin-left: auto;
+	margin-right: auto;
+}
