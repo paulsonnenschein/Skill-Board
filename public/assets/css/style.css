@@ -18,13 +18,13 @@
 	background-repeat: no-repeat;
 	background-size: 100%;
 	background-position:50% 50%;
-	top:0;
-    left:0;
 	filter: blur(5px);
 	-webkit-filter: blur(5px);
 	-moz-filter: blur(5px);
 	-o-filter: blur(5px);
 	-ms-filter: blur(5px);
+	height: 350px;
+	z-index: -12;
 }
 
 #profileImg{
@@ -37,7 +37,8 @@
 }
 
 .circletag {
-    display: block;
+    //display: block;
+	position: fixed;
     width: 200px;
     height: 200px;
     -moz-border-radius: 250px;
@@ -45,6 +46,10 @@
     background-image: url(../images/logo.png);
     //background-position:50% 50%;
     background-repeat:no-repeat;
-	margin-left: auto;
-	margin-right: auto;
+	margin: auto;
+	margin-top:30px;
+	top: 50px;
+	z-index:10;
+	left: 50%;
+	transform: translateX(-50%);
 }

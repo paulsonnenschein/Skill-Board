@@ -1,10 +1,10 @@
-  	  	
+			<div class="circletag"> </div>
 			<div class="jumbotron" id="userBgJumbo">
-				<div class="circletag"> </div>
 
 			</div>
+	
 			<div class="container">
-	<div class="row">
+	<!--<div class="row">
 		<div class="col-lg-12">
 			<div class="col-lg-4">
 				<div class="jumbotron">
@@ -29,4 +29,4 @@
 			
 		</div>
 	</div>
-</div>
+</div>-->
