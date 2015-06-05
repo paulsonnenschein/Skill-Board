@@ -22,12 +22,12 @@ $routes = function (\Klein\Klein $router) {
     });
 
     // profile route
-    $router->respond('GET', '/login', function($request, $response, $service, $app) {
+    $router->respond('GET', '/profile', function($request, $response, $service, $app) {
         $service->render(__DIR__ . '/Views/profile.php', []);
     });
 
     // project route
-    $router->respond('GET', '/login', function($request, $response, $service, $app) {
+    $router->respond('GET', '/project', function($request, $response, $service, $app) {
         $service->render(__DIR__ . '/Views/project.php', []);
     });
 };
