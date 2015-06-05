@@ -4,10 +4,10 @@
 			</div>
 	
 			<div class="container">
-	<!--<div class="row">
+	<div class="row">
 		<div class="col-lg-12">
 			<div class="col-lg-4">
-				<div class="jumbotron">
+				<div class="box">
 					<h3>Über NAME</h3>
 					<p>Name:</p>
 					<p>Alter:</p>
@@ -17,16 +17,16 @@
 				</div>
 			</div>
 			<div class="col-lg-4">
-				<div class="jumbotron">
+				<div class="box">
 				
 				</div>
 			</div>
 			<div class="col-lg-4">
-				<div class="jumbotron">
+				<div class="box">
 				
 				</div>
 			</div>
 			
 		</div>
 	</div>
-</div>-->
+</div>
