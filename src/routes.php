@@ -11,10 +11,25 @@ $routes = function (\Klein\Klein $router) {
     // Define Routes here
     /////////////////////////
 
+    // index route
     $router->respond('GET', '/', function($request, $response, $service, $app) {
         $service->render(__DIR__ . '/Views/index.php', []);
     });
 
+    // login route
+    $router->respond('GET', '/login', function($request, $response, $service, $app) {
+        $service->render(__DIR__ . '/Views/login.php', []);
+    });
+
+    // profile route
+    $router->respond('GET', '/login', function($request, $response, $service, $app) {
+        $service->render(__DIR__ . '/Views/profile.php', []);
+    });
+
+    // project route
+    $router->respond('GET', '/login', function($request, $response, $service, $app) {
+        $service->render(__DIR__ . '/Views/project.php', []);
+    });
 };
 $routes($this);
 
