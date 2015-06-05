@@ -1,0 +1,17 @@
+{
+    "name": "uek/skill-board",
+    "authors": [
+        {
+            "name": "Paul Sonnenschein",
+            "email": "paul.sonnenschein@gibmit.ch"
+        }
+    ],
+    "autoload": {
+      "psr-4": {
+        "": "src/"
+      }
+    },
+    "require": {
+        "klein/klein": "^2.1"
+    }
+}

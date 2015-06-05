@@ -1,0 +1,10 @@
+; Configurations Datei
+
+[db]
+db.ip = localhost
+db.username = root
+db.password = 123
+db.database = database
+
+[env]
+env.debug = 1
