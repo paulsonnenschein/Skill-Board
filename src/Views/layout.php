@@ -13,8 +13,8 @@
     <meta name="copyright" content="&copy;2014 Skill-Board"/>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../../public/assets/images/logo.png">
-    <link rel="apple-touch-icon" href="../../public/assets/images/logo.png">
+    <link rel="shortcut icon" href="assets/images/logo.png">
+    <link rel="apple-touch-icon" href="assets/images/logo.png">
 
     <!-- Robots -->
     <meta name="googlebot" content="all"/>
