@@ -29,7 +29,7 @@
     <link rel="stylesheet" media="all" href="assets/css/bootstrap.min.css">
 
     <!-- JavaScript -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="assets/javascript/jquery.min.js"></script>
     <script type="text/javascript" src="assets/javascript/bootstrap.min.js"></script>
 </head>
 <body>
