@@ -61,7 +61,9 @@
         </div><!-- /.container-fluid -->
     </nav>
 
-    <?php $this->yieldView(); // Render Page Content ?>
+    <div class="container">
+        <?php $this->yieldView(); // Render Page Content ?>
+    </div>
 
 </body>
 </html>

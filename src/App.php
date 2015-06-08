@@ -89,6 +89,22 @@ class App {
             $service->layout(__DIR__ . '/Views/layout.php');
         });
 
+        $router->onHttpError(function($code, $router) {
+            switch ($code) {
+                case 404:
+                    $router->service()->render(__DIR__ . '/Views/error.php',
+                        ['message' => 'Page not found!']);
+                    break;
+                case 405:
+                    $router->service()->render(__DIR__ . '/Views/error.php',
+                        ['message' => 'You dont have permission for this!']);
+                    break;
+                default:
+                    $router->service()->render(__DIR__ . '/Views/error.php',
+                        ['message' => 'Oh no, a bad error happened that caused a '. $code]);
+            }
+        });
+
         return $router;
     }
 
