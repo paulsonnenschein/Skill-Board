@@ -87,6 +87,7 @@ class App {
                 return self::getDb();
             });
             $service->layout(__DIR__ . '/Views/layout.php');
+            $service->startSession();
         });
 
         $router->onHttpError(function($code, $router) {
