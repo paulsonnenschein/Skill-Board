@@ -31,6 +31,7 @@
     <!-- JavaScript -->
     <script src="assets/javascript/jquery.min.js"></script>
     <script type="text/javascript" src="assets/javascript/bootstrap.min.js"></script>
+	<script type="text/javascript" src="assets/javascript/bluring.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-default" role="navigation">
@@ -62,6 +63,22 @@
     </nav>
 
     <div class="container">
+        <div><!-- Flashes -->
+            <?php if(!empty($flashes = $this->flashes('error'))): ?>
+                <div class="alert alert-danger" role="alert">
+                    <?php foreach($flashes as $flash): ?>
+                        <?=$flash ?><br/>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+            <?php if(!empty($flashes = $this->flashes('info'))): ?>
+                <div class="alert alert-info" role="alert">
+                    <?php foreach($flashes as $flash): ?>
+                        <?=$flash ?><br/>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+        </div>
         <?php $this->yieldView(); // Render Page Content ?>
     </div>
 
