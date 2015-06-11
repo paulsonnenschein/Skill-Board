@@ -34,6 +34,13 @@ class App {
 
         // Set base URL
         self::$baseUrl = 'http://' . $_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']) . '/';
+        self::$baseUrl = substr(self::$baseUrl, -2) === '//' ? substr(self::$baseUrl, 0, -1) : self::$baseUrl;
+
+        $base = dirname($_SERVER['PHP_SELF']);
+        // Update request when we have a subdirectory
+        if(ltrim($base, '/')){
+            $_SERVER['REQUEST_URI'] = substr($_SERVER['REQUEST_URI'], strlen($base));
+        }
     }
 
     /**
