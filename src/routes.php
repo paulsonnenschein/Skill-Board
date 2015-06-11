@@ -101,11 +101,30 @@ $routes = function (\Klein\Klein $router) {
 
     // project route
     $router->respond('GET', '/project', function($request, $response, $service, $app) {
-      $projects = \lib\Project::findAll($app->db);
-//      $projects = \lib\Project::findAllByOwner($app->db,$current_user);
+//      $projects = \lib\Project::findAll($app->db);
+      $projects = \lib\Project::findAllByOwner($app->db,$_SESSION['user_id']);
       $service->render(__DIR__ . '/Views/project.php', [
         'projects' => $projects
       ]);
+    });
+    $router->respond('GET', '/project/new', function($request, $response, $service, $app) {
+      $service->render(__DIR__ . '/Views/editProject.php', [
+        'project' => new Project($app->db)
+      ]);
+    });
+    $router->respond('GET', '/project/edit/[i:id]', function($request, $response, $service, $app) {
+      $service->render(__DIR__ . '/Views/editProject.php', [
+        'project' => new Project($app->db,$request->id)
+      ]);
+    });
+    $router->respond('POST', '/project/save', function($request, $response, $service, $app) {
+      $id = ($_POST['id']!=='')?(int)$_POST['id']:null;
+      $project = new Project($app->db,$id);
+      $project->set("name", $_POST['name']);
+      $project->set("owner", $_SESSION['user_id']);
+      $project->set("description", $_POST['description']);
+      $project->save();
+      $response->redirect(App::getBaseUrl().'project');
     });
 };
 $routes($this);

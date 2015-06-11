@@ -34,6 +34,7 @@
     <script type="text/javascript" src="assets/javascript/bluring.js"></script>
 </head>
 <body>
+<<<<<<< HEAD
     <a class="menu-bar" data-toggle="collapse" href="#menu">
         <img src="assets/images/logo.png" width="50px">
     </a>
@@ -44,6 +45,19 @@
             <li><a href="search">Suche</a></li>
         </ul>
     </div>
+=======
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-brand-centered">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand navbar-brand-centered">Skill-Board</div>
+            </div>
+>>>>>>> origin/master
 
 
     <div class="container">

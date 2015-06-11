@@ -128,6 +128,10 @@ class Project {
     $this->datas[$field['db_key']] = $value;
   }
   
+  public function getId(){
+    return $this->id;
+  }
+  
 }
 
 ?>
