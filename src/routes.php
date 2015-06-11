@@ -38,6 +38,34 @@ $routes = function (\Klein\Klein $router) {
         $service->render(__DIR__ . '/Views/signup.php', []);
     });
 
+    // signup route
+    $router->respond('POST', '/signup', function($request, $response, $service, $app) {
+        $userdata = $request->params(['email', 'password', 'confirmPassword', 'firstName', 'lastName']);
+
+        if ($userdata['password'] !== $userdata['confirmPassword']) {
+            $service->flash('Passwort muss gleich sein!', 'signup-error');
+            $service->back();
+            return;
+        } elseif (count($userdata) != count(array_filter($userdata, 'strlen'))) {
+            $service->flash('Alle Felder müssen ausgefüllt sein!', 'signup-error');
+            $service->back();
+            return;
+        }
+
+        unset($userdata['confirmPassword']);
+
+        $user = new User($app->db);
+
+        if ($user->createUser($userdata)) {
+            $user->login($userdata['email'], $userdata['password']);
+            $service->flash(sprintf('Du bist registriert und eingeloggt %s %s.', $userdata['firstName'], $userdata['lastName']));
+            $response->redirect(App::getBaseUrl());
+        } else {
+            $service->flash('User konnte nicht erstellt werden!', 'signup-error');
+            $service->back();
+        }
+    });
+
     // login route
     $router->respond('GET', '/login', function($request, $response, $service, $app) {
         $service->render(__DIR__ . '/Views/login.php', []);

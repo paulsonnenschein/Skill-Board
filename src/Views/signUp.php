@@ -15,6 +15,16 @@
                     <p id="login">Already have an Account?<br><a href="login">Login now</a></p>
                 </form>
             </div>
+            <div><!-- Flashes -->
+                <?php if(!empty($flashes = $this->flashes('signup-error'))): ?>
+                    <hr/>
+                    <div class="alert alert-danger" role="alert">
+                        <?php foreach($flashes as $flash): ?>
+                            <?=$flash ?>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
+            </div>
         </div>
     </div>
 </div>

@@ -9,7 +9,7 @@
                     <button class="btn btn-info btn-block login" type="submit">Login</button>
                 </form>
             </div>
-            <div ><!-- Flashes -->
+            <div><!-- Flashes -->
                 <?php if(!empty($flashes = $this->flashes('login-error'))): ?>
                     <hr/>
                     <div class="alert alert-danger" role="alert">

@@ -80,12 +80,13 @@ class User {
 
     public function createUser(Array $userInfos)
     {
-
         $userInfos['password'] = password_hash($userInfos['password'], PASSWORD_DEFAULT);
 
-        //@todo actually insert data
+        $sql = "INSERT INTO User (email, password, firstName, lastName) VALUES " .
+               "(\"{$userInfos['email']}\", \"{$userInfos['password']}\", \"{$userInfos['firstName']}\", \"{$userInfos['lastName']}\");";
 
-        return true;
+        $statement = $this->db->query($sql);
+        return $statement->rowCount() === 1;
 
     }
 }
