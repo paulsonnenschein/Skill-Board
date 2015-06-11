@@ -1,3 +1,18 @@
+.colorgraph {
+    height: 5px;
+    border-top: 0;
+    background: #c4e17f;
+    border-radius: 5px;
+    background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+}
+
+.hr {
+    border-top: 1px solid #BDC3C7;
+}
+
 /* jumbotron on login view */
 #loginJumbo {
     background: url(../images/bg1.jpg);
@@ -129,17 +144,6 @@
     padding: 10px 20px;
 }
 
-.colorgraph {
-    height: 5px;
-    border-top: 0;
-    background: #c4e17f;
-    border-radius: 5px;
-    background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-    background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-    background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-    background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-}
-
 .animated {
     -webkit-animation-duration: 1s;
     animation-duration: 1s;
@@ -231,23 +235,23 @@
     //background-position:50% 50%;
     background-repeat:no-repeat;
 <<<<<<< HEAD
-	margin: auto;
-	margin-top:30px;
-	top: 50px;
-	z-index:10;
-	left: 50%;
-	transform: translateX(-50%);
+    margin: auto;
+    margin-top:30px;
+    top: 50px;
+    z-index:10;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .box{
-	min-height:20px;
-	padding:19px;
-	margin-bottom:20px;
-	background-color: #BDC3C7;
-	border:1px solid #e3e3e3;
-	border-radius:4px;
-	-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.05);
-	box-shadow:inset 0 1px 1px rgba(0,0,0,.05);
+    min-height:20px;
+    padding:19px;
+    margin-bottom:20px;
+    background-color: #BDC3C7;
+    border:1px solid #e3e3e3;
+    border-radius:4px;
+    -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.05);
+    box-shadow:inset 0 1px 1px rgba(0,0,0,.05);
 }
 
 
@@ -494,14 +498,3 @@
     padding: 0 20px;
     margin-bottom: 17px;
 }
-
-.btn{ border-radius: 50%; width:32px; height:32px; line-height:18px;  }
-=======
-    margin: auto;
-    margin-top:30px;
-    top: 50px;
-    z-index:10;
-    left: 50%;
-    transform: translateX(-50%);
-}
->>>>>>> origin/master
