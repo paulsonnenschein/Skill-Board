@@ -16,6 +16,11 @@ $routes = function (\Klein\Klein $router) {
         $service->render(__DIR__ . '/Views/index.php', []);
     });
 
+    // signUp route
+    $router->respond('GET', '/signUp', function($request, $response, $service, $app) {
+        $service->render(__DIR__ . '/Views/signUp.php', []);
+    });
+
     // login route
     $router->respond('GET', '/login', function($request, $response, $service, $app) {
         $service->render(__DIR__ . '/Views/login.php', []);
