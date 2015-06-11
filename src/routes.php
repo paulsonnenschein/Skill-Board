@@ -95,8 +95,20 @@ $routes = function (\Klein\Klein $router) {
     });
 
     // profile route
+    $router->respond('GET', '/profile/[i:id]', function($request, $response, $service, $app) {
+        $user = new User($app->db);
+        $user->getProfile($request->id);
+
+        $service->render(__DIR__ . '/Views/profile.php', [
+            'user' => $user->getProfile($_SESSION['user_id'])
+        ]);
+    });
     $router->respond('GET', '/profile', function($request, $response, $service, $app) {
-        $service->render(__DIR__ . '/Views/profile.php', []);
+        $user = new User($app->db);
+
+        $service->render(__DIR__ . '/Views/profile.php', [
+            'user' => $user->getProfile($_SESSION['user_id'])
+        ]);
     });
 
     // project route

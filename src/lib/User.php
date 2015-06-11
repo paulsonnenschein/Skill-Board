@@ -89,4 +89,19 @@ class User {
         return $statement->rowCount() === 1;
 
     }
+
+    public function getProfile($id){
+        $user = $this->getUserInfo($id);
+        $sql = "SELECT `programminglanguages`.`name` AS `name` FROM `skills` LEFT JOIN `programminglanguages` ON (`programminglanguages`.`id` = `skills`.`ProgrammingLanguages_id`) WHERE `skills`.`User_id`='".$user['id']."' ORDER BY `name` ASC";
+        $statement = $this->db->query($sql);
+        $skill = $statement->fetchAll();
+
+        $array = array(
+            'name' => $user['firstName'].' '.$user['lastName'],
+            'description' => $user['description'],
+            'skill' => $skill
+        );
+
+        return $array;
+    }
 }
