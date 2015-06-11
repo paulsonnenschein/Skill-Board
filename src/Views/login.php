@@ -17,7 +17,7 @@
                 <?php endif; ?>
             </div>
             <hr class="softHr">
-            <p id="signUp">Not registered yet?<br><a href="signUp">SignUp now</a></p>
+            <p id="signUp">Not registered yet?<br><a href="signup">Sign Up now</a></p>
         </div>
     </div>
 </div>
