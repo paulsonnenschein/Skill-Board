@@ -4,16 +4,19 @@
             <div class="brand"></div>
             <div class="login-form-box">
                 <form method="POST">
-                    <input name="email" type="text" placeholder="E-Mail">
+                    <input name="email" placeholder="E-Mail" autofocus="autofocus">
                     <input name="password" type="password" placeholder="Passwort">
                     <button class="btn btn-info btn-block login" type="submit">Login</button>
                 </form>
             </div>
             <div><!-- Flashes -->
-                <?php if(!empty($flashes = $this->flashes('error'))): ?>
+                <?php if(!empty($flashes = $this->flashes('login-error'))): ?>
+                    <hr/>
+                    <div class="alert alert-danger" role="alert">
                     <?php foreach($flashes as $flash): ?>
-                        <?php  var_dump($flash); ?>
+                        <?=$flash ?>
                     <?php endforeach; ?>
+                    </div>
                 <?php endif; ?>
             </div>
             <hr class="hr">
