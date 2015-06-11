@@ -12,6 +12,10 @@
     <meta name="keywords" content="Skills, IT, information engineer, skill-board, skill"/>
     <meta name="copyright" content="&copy;2014 Skill-Board"/>
 
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/images/logo.png">
+    <link rel="apple-touch-icon" href="assets/images/logo.png">
+
     <!-- Robots -->
     <meta name="googlebot" content="all"/>
     <meta name="robots" content="all"/>
@@ -25,12 +29,41 @@
     <link rel="stylesheet" media="all" href="assets/css/bootstrap.min.css">
 
     <!-- JavaScript -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="assets/javascript/jquery.min.js"></script>
     <script type="text/javascript" src="assets/javascript/bootstrap.min.js"></script>
 </head>
 <body>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-brand-centered">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar">s</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand navbar-brand-centered">Skill-Board</div>
+            </div>
 
-    <?php $this->yieldView(); // Render Page Content ?>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="navbar-brand-centered">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="container">
+        <?php $this->yieldView(); // Render Page Content ?>
+    </div>
 
 </body>
 </html>
