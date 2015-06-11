@@ -1,5 +1,7 @@
 <?php
 
+require_once("lib/project.php");
+
 /**
  * Documentation:
  * @see https://github.com/chriso/klein.php
@@ -28,7 +30,11 @@ $routes = function (\Klein\Klein $router) {
 
     // project route
     $router->respond('GET', '/project', function($request, $response, $service, $app) {
-        $service->render(__DIR__ . '/Views/project.php', []);
+      $projects = \lib\Project::findAll($app->db);
+//      $projects = \lib\Project::findAllByOwner($app->db,$current_user);
+      $service->render(__DIR__ . '/Views/project.php', [
+        'projects' => $projects
+      ]);
     });
 };
 $routes($this);
