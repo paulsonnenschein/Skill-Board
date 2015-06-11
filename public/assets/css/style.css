@@ -1,3 +1,7 @@
+.hr {
+    border-top: 1px solid #BDC3C7;
+}
+
 /* jumbotron on login view */
 #loginJumbo {
     background: url(../images/bg1.jpg);
@@ -13,7 +17,7 @@
 /* container for signup div */
 .signup-container {
     position: relative;
-    width: 400px;
+    width: 350px;
     margin: 80px auto;
     padding: 20px 40px 40px;
     text-align: center;
@@ -23,11 +27,7 @@
     border-radius: 5px;
 }
 
-.signup-container #signup-hr {
-    border-top: 1px solid rgb(189, 195, 199, .9);
-}
-
-/* login form box */
+/* signup form box */
 .signup-form-box input {
     width: 100%;
     padding: 10px;
