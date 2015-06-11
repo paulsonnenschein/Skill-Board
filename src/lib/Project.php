@@ -8,7 +8,9 @@ use lib\dbObject;
 class Project extends dbObject {
 
   static protected $table = "Project";
-  static protected $primaryKeys = ['id'];
+  static protected $primaryKeys = [
+    'id' => 'id'
+  ];
   static protected $fields = [
     "name" => [
       "db_key" => "name"
@@ -28,7 +30,7 @@ class Project extends dbObject {
   ];
 
   function __construct(PDO $db,$id=null){
-    parent::__construct( $db, $id===null ? null : ['id'=>$id] );
+    parent::__construct( $db, ['id'=>$id] );
   }
 
   static public function findAllByOwner($db,$uid){

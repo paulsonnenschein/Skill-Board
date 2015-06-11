@@ -6,16 +6,17 @@ use PDO;
 
 class dbObject {
 
-  protected $datas;
+  private $datas;
+  private $id;
+
   protected $db;
-  protected $id;
   protected $idCheckSQL;
 
-  function __construct(PDO $db,$id=null){
+  function __construct(PDO $db,Array $id=array()){
     $this->init();
     $this->db = $db;
     $this->id = $id;
-    if($id!==null)
+    if($this->isPrimaryKeyComplete())
       $this->load();
   }
 
@@ -111,11 +112,28 @@ class dbObject {
   }
   
   public function getId($name=null){
-    if(!$name)
-      $name = static::$primaryKeys[0];
+    if($name)
+      $name = static::$primaryKeys[name];
+    else
+      $name = end(static::$primaryKeys);
     return @$this->id[$name];
   }
-  
+
+  public function setId($name=null,$value=null){
+    if($name)
+      $name = static::$primaryKeys[name];
+    else
+      $name = end(static::$primaryKeys);
+    $this->id[$name] = $value;
+  }
+
+  public function isPrimaryKeyComplete(){
+    foreach(static::$primaryKeys as $key)
+      if(!isset($this->id[$key])&&$this->id[$key])
+        return false;
+    return true;
+  }
+
 }
 
 ?>
