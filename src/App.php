@@ -98,6 +98,9 @@ class App {
         });
 
         $router->onHttpError(function($code, $router) {
+            if ($router->response()->isLocked()) {
+                return;
+            }
             switch ($code) {
                 case 404:
                     $router->service()->flash('Page not found!', 'error');
