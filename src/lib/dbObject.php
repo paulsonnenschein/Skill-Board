@@ -8,21 +8,22 @@ class dbObject {
 
   private $datas;
   private $id;
+  private $saved;
 
   protected $db;
   protected $idCheckSQL;
 
-  function __construct(PDO $db,Array $id=array()){
+  function __construct(PDO $db,Array $id=[]){
     $this->init();
     $this->db = $db;
     $this->id = $id;
+    $this->saved = false;
     if($this->isPrimaryKeyComplete())
       $this->load();
   }
 
   private function init(){
     $this->datas = [];
-    $this->set("creationDate",date('Y-m-d'));
     $this->idCheckSQL = $this->genIdCheckSQL();
   }
 
@@ -33,7 +34,7 @@ class dbObject {
     return $sql;
   }
 
-  protected function genIdCheckSQLAddParams($arr=[]){
+  protected function genIdCheckSQLAddParams(Array $arr=[]){
     foreach(static::$primaryKeys as $val)
       $arr[":$val"] = $this->id[$val];
     return $arr;
@@ -45,43 +46,68 @@ class dbObject {
       [ PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY ]
     );
     $sth->execute($this->genIdCheckSQLAddParams());
-    $this->datas = $sth->fetch(PDO::FETCH_ASSOC);
+    $result = $sth->fetch(PDO::FETCH_ASSOC);
+    if($result){
+      $this->datas = $result;
+      $this->saved = true;
+    }
   }
 
-  static public function findAll($db){
-    return self::resultListToDBOList(
-      $db,
-      $db->query('SELECT * FROM '.static::$table)->fetchAll(PDO::FETCH_ASSOC)
-    );
+  static public function findAll(PDO $db,Array $search=[]){
+    $sql_search = '';
+    $values = [];
+    foreach($search as $name => $value){
+      $key = null;
+      if(isset(static::$primaryKeys[$name])){
+        $key = static::$primaryKeys[$name];
+      }else if(isset(static::$fields[$name])){
+        $key = static::$fields[$name]['db_key'];
+      }else continue;
+      $values[':'.$key] = ($value instanceof dbObject) ? $value->getId() : $value;
+      $sql_search .= ($sql_search?' AND':' WHERE')." $key = :$key";
+    }
+    $sql = 'SELECT * FROM '.static::$table.$sql_search;
+    $sth = $db->prepare($sql);
+    $sth->execute($values);
+    return self::resultListToDBOList( $db, $sth->fetchAll(PDO::FETCH_ASSOC) );
   }
 
-  static protected function resultListToDBOList($db,$list){
+  static protected function resultListToDBOList(PDO $db,Array $list){
     $result = [];
     foreach($list as $entry)
       $result[] = self::entryToDBO($db,$entry);
     return $result;
   }
 
-  static protected function entryToDBO($db,$entry){
+  static protected function entryToDBO(PDO $db,Array $entry){
     $p = new Project($db);
     $p->datas = $entry;
-    $p->id = $entry['id'];
+    foreach(static::$primaryKeys as $key)
+      $p->id[$key] = $entry[$key];
     return $p;
   }
 
   public function save(){
-    if(!$this->id){
+    if(!$this->saved){
       $sql_keys = '';
       $sql_values = '';
-      $values = [];
+      $values = $this->genIdCheckSQLAddParams();
       foreach($this->datas as $key => $value){
-        $values[':'.$key] = $value;
+        $values[':'.$key] = ($value instanceof dbObject) ? $value->getId() : $value;
+        $sql_keys .= ($sql_keys?',':'').' `'.$key.'`';
+        $sql_values .= ($sql_values?',':'').' :'.$key;
+      }
+      foreach(static::$primaryKeys as $key){
+        if( !isset($this->id[$key]) || !$this->id[$key] )
+          continue;
+        $value = $this->id[$key];
+        $values[':'.$key] = ($value instanceof dbObject) ? $value->getId() : $value;
         $sql_keys .= ($sql_keys?',':'').' `'.$key.'`';
         $sql_values .= ($sql_values?',':'').' :'.$key;
       }
       $sql  = "INSERT INTO ".static::$table." ($sql_keys ) VALUES ($sql_values )";
       $sth = $this->db->prepare($sql, [ PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY ]);
-      $sth->execute($values);
+      $this->id = $sth->execute($values);
     } else {
       $sql_set = '';
       $values = $this->genIdCheckSQLAddParams();
@@ -89,31 +115,34 @@ class dbObject {
         $key = $value['db_key'];
         $val = isset($this->datas[$key])?$this->datas[$key]:null;
         $values[':'.$key] = $val;
-        $sql_set .= ($sql_set?',':'')." $key = :$key";
+        $sql_set .= ($sql_set?',':' SET')." $key = :$key";
       }
-      $sql = "UPDATE ".static::$table." SET $sql_set WHERE ".$this->idCheckSQL;
-      $sth = $this->db->prepare($sql, [ PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY ]);
-      $sth->execute($values);
+      if($sql_set){
+        $sql = "UPDATE ".static::$table." $sql_set WHERE ".$this->idCheckSQL;
+        $sth = $this->db->prepare($sql, [ PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY ]);
+        $sth->execute($values);
+      }
     }
+    $this->saved = true;
   }
 
   public function get($name){
     if(!isset(static::$fields[$name]))
-      throw new Exception("A ".static::$table." doesn't contain an $name\n");
+      throw new \Exception("A ".static::$table." doesn't contain a $name\n");
     $field = static::$fields[$name];
     return @$this->datas[$field['db_key']];
   }
-  
-  public function set($name,$value){
+
+  public function set($name,$value=null){
     if(!isset(static::$fields[$name]))
-      throw new Exception("A ".static::$table." doesn't contain an $name\n");
+      throw new \Exception("A ".static::$table." doesn't contain a $name\n");
     $field = static::$fields[$name];
     $this->datas[$field['db_key']] = $value;
   }
-  
+
   public function getId($name=null){
     if($name)
-      $name = static::$primaryKeys[name];
+      $name = static::$primaryKeys[$name];
     else
       $name = end(static::$primaryKeys);
     return @$this->id[$name];
@@ -121,7 +150,7 @@ class dbObject {
 
   public function setId($name=null,$value=null){
     if($name)
-      $name = static::$primaryKeys[name];
+      $name = static::$primaryKeys[$name];
     else
       $name = end(static::$primaryKeys);
     $this->id[$name] = $value;

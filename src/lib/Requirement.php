@@ -14,7 +14,7 @@ class Requirement extends dbObject {
   ];
   static protected $fields = [];
 
-  function __construct(PDO $db,$projectId=null,$programmingLanguageId==null){
+  function __construct(PDO $db,$projectId=null,$programmingLanguageId=null){
     parent::__construct( $db, [
       'Project_id' => $projectId,
       'ProgrammingLanguages_id' => $programmingLanguageId

@@ -9,12 +9,12 @@
   <tbody>
 <?php
   foreach($this->projects as $project){
-    $ep = array( 
+    $ep = [
       "id" => $project->getId(),
       "name" => htmlentities($project->get("name")),
       "description" => htmlentities($project->get("description")),
       "creationDate" => htmlentities($project->get("creationDate"))
-    );
+    ];
     echo <<<EOF
     <tr onclick="location.href='project/edit/$ep[id]'">
       <td>$ep[name]</td>

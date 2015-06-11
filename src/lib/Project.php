@@ -4,6 +4,7 @@ namespace lib;
 
 use PDO;
 use lib\dbObject;
+use lib\Requirement;
 
 class Project extends dbObject {
 
@@ -31,18 +32,13 @@ class Project extends dbObject {
 
   function __construct(PDO $db,$id=null){
     parent::__construct( $db, ['id'=>$id] );
+    $this->set("creationDate",date('Y-m-d'));
   }
 
-  static public function findAllByOwner($db,$uid){
-    $sth = $db->prepare(
-      'SELECT * FROM Project WHERE Owner_Id = :uid',
-      array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY)
-    );
-    $sth->execute([ ':uid' => $uid ]);
-    return self::resultListToDBOList(
-      $db,
-      $sth->fetchAll(PDO::FETCH_ASSOC)
-    );
+  public function getRequirements(){
+    return Requirement::findAll($this->db,[
+      'project' => $this
+    ]);
   }
 
 }

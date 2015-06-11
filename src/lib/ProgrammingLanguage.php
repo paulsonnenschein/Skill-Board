@@ -5,7 +5,7 @@ namespace lib;
 use PDO;
 use lib\dbObject;
 
-class ProgrammingLanguages extends dbObject {
+class ProgrammingLanguage extends dbObject {
 
   static protected $table = "ProgrammingLanguages";
   static protected $primaryKeys = [

@@ -2,6 +2,8 @@
 
 use lib\User;
 use lib\Project;
+use lib\Requirement;
+use lib\ProgrammingLanguage;
 
 /**
  * Documentation:
@@ -101,20 +103,23 @@ $routes = function (\Klein\Klein $router) {
 
     // project route
     $router->respond('GET', '/project', function($request, $response, $service, $app) {
-//      $projects = \lib\Project::findAll($app->db);
-      $projects = \lib\Project::findAllByOwner($app->db,$_SESSION['user_id']);
+      $projects = Project::findAll($app->db,[
+        'owner' => $_SESSION['user_id']
+      ]);
       $service->render(__DIR__ . '/Views/project.php', [
         'projects' => $projects
       ]);
     });
     $router->respond('GET', '/project/new', function($request, $response, $service, $app) {
       $service->render(__DIR__ . '/Views/editProject.php', [
-        'project' => new Project($app->db)
+        'project' => new Project($app->db),
+        'programmingLanguages' => ProgrammingLanguage::findAll($app->db)
       ]);
     });
     $router->respond('GET', '/project/edit/[i:id]', function($request, $response, $service, $app) {
       $service->render(__DIR__ . '/Views/editProject.php', [
-        'project' => new Project($app->db,$request->id)
+        'project' => new Project($app->db,$request->id),
+        'programmingLanguages' => ProgrammingLanguage::findAll($app->db)
       ]);
     });
     $router->respond('POST', '/project/save', function($request, $response, $service, $app) {
@@ -124,6 +129,11 @@ $routes = function (\Klein\Klein $router) {
       $project->set("owner", $_SESSION['user_id']);
       $project->set("description", $_POST['description']);
       $project->save();
+      $pl = $_POST['pl'];
+      foreach($pl as $plid){
+        $requirement = new Requirement($app->db,$id,$plid);
+        $requirement->save();
+      }
       $response->redirect(App::getBaseUrl().'project');
     });
 };
