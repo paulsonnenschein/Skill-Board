@@ -1,3 +1,4 @@
+/* jumbotron on login view */
 #loginJumbo {
     background: url(../images/bg1.jpg);
     background-repeat: no-repeat;
@@ -9,7 +10,64 @@
     position: fixed;
 }
 
-.login-container{
+/* container for signup div */
+.signup-container {
+    position: relative;
+    width: 400px;
+    margin: 80px auto;
+    padding: 20px 40px 40px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #ccc;
+    background-color:rgba(255,255,255,.9);
+    border-radius: 5px;
+}
+
+.signup-container #signup-hr {
+    border-top: 1px solid rgb(189, 195, 199, .9);
+}
+
+/* login form box */
+.signup-form-box input {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    height:40px;
+    border: 1px solid #ccc;;
+    background: #fafafa;
+    transition:0.2s ease-in-out;
+}
+
+.signup-form-box input:focus {
+    outline: 0;
+    background: #eee;
+}
+
+.signup-form-box .top {
+    border-radius: 5px 5px 0 0;
+    text-transform: capitalize;
+}
+
+.signup-form-box .middle {
+    border-radius: 0;
+    border-top: 0;
+}
+
+.signup-form-box .bottom {
+    border-radius: 0 0 5px 5px;
+    border-top: 0;
+}
+
+.signup-form-box button.login{
+    margin-top:15px;
+    padding: 10px 20px;
+}
+
+
+
+
+/* container for login div */
+.login-container {
     position: relative;
     width: 300px;
     margin: 80px auto;
@@ -21,23 +79,16 @@
     border-radius: 5px;
 }
 
-#output{
-    position: absolute;
-    width: 300px;
-    top: -75px;
-    left: 0;
-    color: #fff;
+.login-container #signUp {
+    font-size: 1em;
 }
 
-#output.alert-success{
-    background: rgb(25, 204, 25);
+.login-container .colorgraph {
+    height: 1px;
 }
 
-#output.alert-danger{
-    background: rgb(228, 105, 105);
-}
-
-.brand{
+/* displaying the brand image on the login container */
+.brand {
     width: 100px;height: 100px;
     margin: 10px auto 30px;
     border-radius: 100%;
@@ -47,7 +98,8 @@
     background-position: -10px -10px;
 }
 
-.form-box input{
+/* login form box */
+.login-form-box input {
     width: 100%;
     padding: 10px;
     text-align: center;
@@ -55,27 +107,37 @@
     border: 1px solid #ccc;;
     background: #fafafa;
     transition:0.2s ease-in-out;
-
 }
 
-.form-box input:focus{
+.login-form-box input:focus {
     outline: 0;
     background: #eee;
 }
 
-.form-box input[type="text"]{
+.login-form-box input[type="text"] {
     border-radius: 5px 5px 0 0;
-    text-transform: lowercase;
+    text-transform: capitalize;
 }
 
-.form-box input[type="password"]{
+.login-form-box input[type="password"] {
     border-radius: 0 0 5px 5px;
     border-top: 0;
 }
 
-.form-box button.login{
+.login-form-box button.login{
     margin-top:15px;
     padding: 10px 20px;
+}
+
+.colorgraph {
+    height: 5px;
+    border-top: 0;
+    background: #c4e17f;
+    border-radius: 5px;
+    background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
 }
 
 .animated {
@@ -120,7 +182,7 @@
     animation-name: fadeInUp;
 }
 
-@media screen and (min-width:768px){
+@media screen and (min-width:768px) {
     .navbar-brand-centered {
         position: absolute;
         left: 50%;
@@ -135,32 +197,32 @@
     }
 }
 
-#userBgJumbo{
-	background: url(../images/bg3.jpg);
-	background-repeat: no-repeat;
-	background-size: 100%;
-	background-position:50% 50%;
-	filter: blur(5px);
-	-webkit-filter: blur(5px);
-	-moz-filter: blur(5px);
-	-o-filter: blur(5px);
-	-ms-filter: blur(5px);
-	height: 350px;
-	z-index: -12;
+#userBgJumbo {
+    background: url(../images/bg3.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position:50% 50%;
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    height: 350px;
+    z-index: -12;
 }
 
-#profileImg{
-	background: url(../images/bg1.jpg);
-	background-repeat:no-repeat;
-	width: 100%;
-	height: 100%;
-	background-position:50% 50%;
-	
+#profileImg {
+    background: url(../images/bg1.jpg);
+    background-repeat:no-repeat;
+    width: 100%;
+    height: 100%;
+    background-position:50% 50%;
+
 }
 
 .circletag {
     //display: block;
-	position: fixed;
+    position: fixed;
     width: 200px;
     height: 200px;
     -moz-border-radius: 250px;
@@ -168,10 +230,10 @@
     background-image: url(../images/logo.png);
     //background-position:50% 50%;
     background-repeat:no-repeat;
-	margin: auto;
-	margin-top:30px;
-	top: 50px;
-	z-index:10;
-	left: 50%;
-	transform: translateX(-50%);
+    margin: auto;
+    margin-top:30px;
+    top: 50px;
+    z-index:10;
+    left: 50%;
+    transform: translateX(-50%);
 }
