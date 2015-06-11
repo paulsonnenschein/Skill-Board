@@ -7,10 +7,10 @@
                     <input class="top" name="firstName" type="text" placeholder="Vorname">
                     <input class="middle" name="lastName" placeholder="Nachname">
                     <input class="bottom" name="email" placeholder="E-Mail">
-                    <hr id="signup-hr">
+                    <hr class="hr">
                     <input class="top" name="password" type="password" placeholder="Passwort">
                     <input class="bottom" name="confirmPassword" type="password" placeholder="Passwort Bestätigen">
-                    <button class="btn btn-info btn-block login" type="submit">Login</button>
+                    <button class="btn btn-info btn-block login" type="submit">Sign Up</button>
                 </form>
             </div>
         </div>
