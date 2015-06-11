@@ -16,7 +16,7 @@
                     <?php endforeach; ?>
                 <?php endif; ?>
             </div>
-            <hr class="softHr">
+            <hr class="hr">
             <p id="signUp">Not registered yet?<br><a href="signup">Sign Up now</a></p>
         </div>
     </div>
