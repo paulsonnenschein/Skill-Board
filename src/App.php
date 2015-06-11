@@ -100,16 +100,16 @@ class App {
         $router->onHttpError(function($code, $router) {
             switch ($code) {
                 case 404:
-                    $router->service()->render(__DIR__ . '/Views/error.php',
-                        ['message' => 'Page not found!']);
+                    $router->service()->flash('Page not found!', 'error');
+                    $router->response()->redirect(App::getBaseUrl());
                     break;
                 case 405:
-                    $router->service()->render(__DIR__ . '/Views/error.php',
-                        ['message' => 'You dont have permission for this!']);
+                    $router->service()->flash('You dont have permission for this!', 'error');
+                    $router->response()->redirect(App::getBaseUrl());
                     break;
                 default:
-                    $router->service()->render(__DIR__ . '/Views/error.php',
-                        ['message' => 'Oh no, a bad error happened that caused a '. $code]);
+                    $router->service()->flash('Oh no, a bad error happened that caused a ' . $code, 'error');
+                    $router->response()->redirect(App::getBaseUrl());
             }
         });
 

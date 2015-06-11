@@ -48,10 +48,12 @@ $routes = function (\Klein\Klein $router) {
         $user = new User($app->db);
         if ($user->login($request->param('email'), $request->param('password'))) {
             // success
+            $info = $user->getLoginUserInfo();
+            $service->flash(sprintf('Du bist eingeloggt %s %s.', $info['firstName'], $info['lastName']));
             $response->redirect(App::getBaseUrl());
         } else {
             // fail
-            $service->flash('Konnte nicht eingeloggt werden! (Username / Passwort falsch)', 'error');
+            $service->flash('Konnte nicht eingeloggt werden! (Username / Passwort falsch)', 'login-error');
             $service->back();
         }
     });
@@ -60,6 +62,7 @@ $routes = function (\Klein\Klein $router) {
     $router->respond('GET', '/logout', function($request, $response, $service, $app) {
         $user = new User($app->db);
         $user->logout();
+        $service->flash('Du bist ausgeloggt.');
         $response->redirect(App::getBaseUrl());
     });
 

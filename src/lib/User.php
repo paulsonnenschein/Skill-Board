@@ -28,25 +28,17 @@ class User {
     {
         $this->logout();
 
-        $sql = "SELECT * FROM User WHERE email = ? LIMIT 1;";
+        $sql = "SELECT * FROM User WHERE email = \"$username\" LIMIT 1;";
 
-        $statement = $this->db->prepare($sql);
-        $statement->bindValue(1, $username, PDO::PARAM_STR);
+        $statement = $this->db->query($sql);
         $result = $statement->fetch();
 
-        //@todo Implement real Check
-        /**
-        if (password_verify($password, $result['password'])) {
+        if ($result !== false && password_verify($password, $result['password'])) {
             $_SESSION['user_id'] = $result['id'];
             return true;
         } else {
             return false;
         }
-        /**/
-
-        $_SESSION['user_id'] = 1;
-
-        return true;
     }
 
     /**
@@ -64,10 +56,9 @@ class User {
      */
     public function getUserInfo($userId)
     {
-        $sql = "SELECT * FROM User WHERE id = ? LIMIT 1;";
+        $sql = "SELECT * FROM User WHERE id = $userId LIMIT 1;";
 
-        $statement = $this->db->prepare($sql);
-        $statement->bindValue(1, $userId, PDO::PARAM_INT);
+        $statement = $this->db->query($sql);
         return $statement->fetch();
     }
 

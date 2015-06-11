@@ -62,6 +62,22 @@
     </nav>
 
     <div class="container">
+        <div><!-- Flashes -->
+            <?php if(!empty($flashes = $this->flashes('error'))): ?>
+                <div class="alert alert-danger" role="alert">
+                    <?php foreach($flashes as $flash): ?>
+                        <?=$flash ?><br/>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+            <?php if(!empty($flashes = $this->flashes('info'))): ?>
+                <div class="alert alert-info" role="alert">
+                    <?php foreach($flashes as $flash): ?>
+                        <?=$flash ?><br/>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+        </div>
         <?php $this->yieldView(); // Render Page Content ?>
     </div>
 
