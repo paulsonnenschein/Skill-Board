@@ -93,7 +93,7 @@ $routes = function (\Klein\Klein $router) {
         $user = new User($app->db);
         $user->logout();
         $service->flash('Du bist ausgeloggt.');
-        $response->redirect(App::getBaseUrl());
+        $response->redirect(App::getBaseUrl() . 'login');
     });
 
     // profile route
