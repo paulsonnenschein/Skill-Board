@@ -15,18 +15,15 @@
 
 /* Menu */
 .menu-bar {
+    display: block;
     position: absolute;
-    top: 20px;
-    left: 50%;
-    height: 14px;
-    margin-left: -10px;
 }
 
 .menu {
-    display: none;
+    display: block;
     width: 100%;
     padding: 30px 10px 50px;
-    margin: 5% auto;
+    margin: 0 0 0 1%;
     text-align: center;
     background-color: #fff;
 }
@@ -42,6 +39,9 @@
     text-decoration: none;
     opacity: 1;
 }
+
+
+
 
 /* jumbotron on login view */
 #loginJumbo {
@@ -249,20 +249,6 @@
     transform: translateX(-50%);
 }
 
-.box{
-    min-height:20px;
-    padding:19px;
-    margin-bottom:20px;
-    background-color: #BDC3C7;
-    border:1px solid #e3e3e3;
-    border-radius:4px;
-    -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.05);
-    box-shadow:inset 0 1px 1px rgba(0,0,0,.05);
-}
-
-
-
-
 .card {
     background-color: rgba(214, 224, 226, 0.2);
 }
@@ -274,21 +260,21 @@
     overflow: hidden;
     text-align: center;
     background-color: #fff;
-	z-index: 100000000;
+    z-index: 100000000;
 }
 
 .cardheader {
     background: url("../images/bg1.jpg");
     background-size: cover;
-	width: 100%;
+    width: 100%;
     height: 300px;
-	filter: blur(3px);
+    filter: blur(3px);
     -webkit-filter: blur(3px);
     -moz-filter: blur(3px);
     -o-filter: blur(3px);
     -ms-filter: blur(3px);
-	-webkit-transition: all 2s;
-	z-index: -2;
+    -webkit-transition: all 2s;
+    z-index: -2;
 }
 
 .card.hovercard .avatar {
@@ -327,3 +313,7 @@
     color: #737373;
     text-overflow: ellipsis;
 }
+
+
+
+/* search view */

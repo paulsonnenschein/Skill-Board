@@ -34,14 +34,12 @@
     <script type="text/javascript" src="assets/javascript/bluring.js"></script>
 </head>
 <body>
-
-    <a class="menu-bar" data-toggle="collapse" href="#menu">
-        <img src="assets/images/logo.png" width="50px">
-    </a>
-
-    <div class="collapse menu" id="menu">
+    <div class="menu" id="menu">
         <ul class="list-inline">
-            <li><a href="/">Home</a></li>
+            <span>
+                <img src="assets/images/logo.png" width="100px">
+            </span>
+            <li><a href="">Home</a></li>
             <li><a href="profile">Mein Profil</a></li>
             <li><a href="search">Suche</a></li>
         </ul>
