@@ -36,9 +36,13 @@
 						</a>
 					  </h4>
 					</div>
-					<div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+					<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 					  <div class="panel-body">
-						Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						<dl class="dl-horizontal">
+						  <dt><a href="#">ProjektName</a></dt>
+						  <dd>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor</dd>
+						  <dd><span class="glyphicon glyphicon-calendar"><b>12.06.2015</b></span></dd>
+						</dl>
 					  </div>
 					</div>
 				</div>
@@ -54,7 +58,7 @@
 						</a>
 					  </h4>
 					</div>
-					<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+					<div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
 					  <div class="panel-body">
 						<p><kbd>HTML 5</kbd>, <kbd>PHP 5</kbd>, <kbd>CSS 3</kbd></p>
 					  </div>
