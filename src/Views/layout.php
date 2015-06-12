@@ -31,36 +31,21 @@
     <!-- JavaScript -->
     <script src="assets/javascript/jquery.min.js"></script>
     <script type="text/javascript" src="assets/javascript/bootstrap.min.js"></script>
-	<script type="text/javascript" src="assets/javascript/bluring.js"></script>
+    <script type="text/javascript" src="assets/javascript/bluring.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-brand-centered">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar">s</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <div class="navbar-brand navbar-brand-centered">Skill-Board</div>
-            </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="navbar-brand-centered">
-                <ul class="nav navbar-nav">
-                    <li><a href="#">Link</a></li>
-                    <li><a href="#">Link</a></li>
-                    <li><a href="#">Link</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Link</a></li>
-                    <li><a href="#">Link</a></li>
-                    <li><a href="#">Link</a></li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
+    <a class="menu-bar" data-toggle="collapse" href="#menu">
+        <img src="assets/images/logo.png" width="50px">
+    </a>
+
+    <div class="collapse menu" id="menu">
+        <ul class="list-inline">
+            <li><a href="/">Home</a></li>
+            <li><a href="profile">Mein Profil</a></li>
+            <li><a href="search">Suche</a></li>
+        </ul>
+    </div>
 
     <div class="container">
         <div><!-- Flashes -->
