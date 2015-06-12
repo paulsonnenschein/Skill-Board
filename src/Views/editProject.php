@@ -84,17 +84,18 @@ EOF;
         foreach($developers as $developer){
           $user = $developer->getUser();
           $euser = [
-            'id' => $user->getId(),
-            'name' => htmlentities($user->get('vorname')." ".$user->get('nachname')),
-            'statusUser' => [
+            'id' => $user['id'],
+            'name' => htmlentities($user['firstName']." ".$user['lastName']),
+            'status' => [
               'ACCEPTED'  => 'Beigetreten',
               'UNDECIDED' => 'Angefragt',
               'DECLINED' => 'Abgelehnt',
-            ][$user->get('statusUser')]
+            ][$developer->get('statusUser')]
           ];
           echo <<<EOF
-        <tr>
-          <td data-id="$euser[id]">$euser[name]</td>
+        <tr data-id="$euser[id]">
+          <td>$euser[name]</td>
+          <td>$euser[status]</td>
         </tr>
 EOF;
         }
