@@ -144,80 +144,29 @@
     padding: 10px 20px;
 }
 
-.animated {
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
+<<<<<<< Updated upstream
+
+
+
+/* Index View */
+/* jumbotron on login view */
+#indexBG {
+    background-image: url(../images/bg3.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -1;
 }
 
-@-webkit-keyframes fadeInUp {
-    0% {
-        opacity: 0;
-        -webkit-transform: translateY(20px);
-        transform: translateY(20px);
-    }
-
-    100% {
-        opacity: 1;
-        -webkit-transform: translateY(0);
-        transform: translateY(0);
-    }
+#containerFixIndex {
+    margin-top: 10%;
 }
 
-@keyframes fadeInUp {
-    0% {
-        opacity: 0;
-        -webkit-transform: translateY(20px);
-        -ms-transform: translateY(20px);
-        transform: translateY(20px);
-    }
-
-    100% {
-        opacity: 1;
-        -webkit-transform: translateY(0);
-        -ms-transform: translateY(0);
-        transform: translateY(0);
-    }
-}
-
-.fadeInUp {
-    -webkit-animation-name: fadeInUp;
-    animation-name: fadeInUp;
-}
-
-@media screen and (min-width:768px) {
-    .navbar-brand-centered {
-        position: absolute;
-        left: 50%;
-        display: block;
-        width: 160px;
-        text-align: center;
-        background-color: #eee;
-    }
-    .navbar>.container .navbar-brand-centered,
-    .navbar>.container-fluid .navbar-brand-centered {
-        margin-left: -80px;
-    }
-}
-
-.circletag {
-    //display: block;
-    position: fixed;
-    width: 200px;
-    height: 200px;
-    -moz-border-radius: 250px;
-    -webkit-border-radius: 250px;
-    background-image: url(../images/logo.png);
-    //background-position:50% 50%;
-    background-repeat:no-repeat;
-    margin: auto;
-    margin-top:30px;
-    top: 50px;
-    z-index:10;
-    left: 50%;
-    transform: translateX(-50%);
-}
 
 .card {
     background-color: rgba(214, 224, 226, 0.2);
@@ -246,7 +195,7 @@
 /*Box bei der Profilkarte*/
 #jumboProfile #hovercard {
     //position: relative;
-    margin-top: 140px;
+    margin-top: 20%;
    // overflow: hidden;
     text-align: center;
     background-color: #fff;
@@ -269,16 +218,17 @@
     border: 5px solid rgba(31,71,136, 0.4);
 }
 #jumboProfile{
-	background: url("../images/bg1.jpg");
+    background: url("../images/bg1.jpg");
     background-size: cover;
     width: 100%;
-    height: 300px;
+    height: 400px;
     filter: blur(3px);
     z-index: -2;
+	margin-top: -1.7%;
 }
 
 #jumboProfile #info {
-	text-align:center;
+    text-align:center;
 }
 
 #jumboProfile  #info #title {
@@ -298,3 +248,54 @@
 }
 
 /* search view */
+
+#searchJumbo {
+    background: url(../images/bg1.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left:0;
+    position: fixed;
+	z-index: -1;
+	margin-top: -1.5%;
+}
+
+.search-container {
+    position: relative;
+    width: 400px;
+    margin: 80px auto;
+    padding: 20px 40px 40px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #ccc;
+    background-color:rgba(255,255,255,.9);
+    border-radius: 5px;
+	margin-top: 30%;
+}
+
+.search-form-box input {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    height:40px;
+    border: 1px solid #ccc;;
+    background: #fafafa;
+    transition:0.2s ease-in-out;
+}
+
+.search-form-box input:focus {
+    outline: 0;
+    background: #eee;
+}
+
+.search-form-box .top {
+    border-radius: 5px 5px 0 0;
+    text-transform: capitalize;
+}
+
+.search-form-box .bottom {
+    border-radius: 0 0 5px 5px;
+    border-top: 0;
+}
