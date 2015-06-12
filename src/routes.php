@@ -19,16 +19,14 @@ $routes = function (\Klein\Klein $router) {
     // Check if logged in
     $router->respond(function($request, $response, $service, $app) {
         // skip login check if its / or /login or /logout or /signup
-        $uri = $request->uri();
-        if ($uri === '/' || 0 === strpos($uri, '/login') ||
-            0 === strpos($uri, '/logout') || 0 === strpos($uri, '/signup')) {
+        if ($request->uri() === '/' || $request->uri() === '/login' ||
+            $request->uri() === '/logout' || $request->uri() === '/signup') {
             return;
         }
 
         $user = new User($app->db);
         if(!$user->isLoggedIn()) {
             $response->redirect(App::getBaseUrl() . 'login', 405);
-            $response->send();
         }
     });
 
@@ -99,36 +97,8 @@ $routes = function (\Klein\Klein $router) {
     });
 
     // profile route
-    $router->respond('GET', '/profile/[i:id]', function($request, $response, $service, $app) {
-        $user = new User($app->db);
-        $user->getProfile($request->id);
-
-        $service->render(__DIR__ . '/Views/profile.php', [
-            'user' => $user->getProfile($_SESSION['user_id'])
-        ]);
-    });
     $router->respond('GET', '/profile', function($request, $response, $service, $app) {
-        $user = new User($app->db);
-
-        $service->render(__DIR__ . '/Views/profile.php', [
-            'user' => $user->getProfile($_SESSION['user_id'])
-        ]);
-    });
-
-    $router->respond('GET', '/profile/edit/[i:id]', function($request, $response, $service, $app) {
-        $user = new User($app->db);
-        $user->getProfile($request->id);
-
-        $service->render(__DIR__ . '/Views/editProfile.php', [
-            'user' => $user->getProfile($_SESSION['user_id'])
-        ]);
-    });
-    $router->respond('GET', '/profile/edit', function($request, $response, $service, $app) {
-        $user = new User($app->db);
-
-        $service->render(__DIR__ . '/Views/editProfile.php', [
-            'user' => $user->getProfile($_SESSION['user_id'])
-        ]);
+        $service->render(__DIR__ . '/Views/profile.php', []);
     });
 
     // project route
