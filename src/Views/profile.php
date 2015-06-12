@@ -47,7 +47,7 @@
                                 <?php if (count($this->user['project']) > 0): ?>
                                     <?php foreach ($this->user['project'] as $project): ?>
                                         <li>
-                                            <a href="project/view/'<?= $this->escape($project['id']) ?>">
+                                            <a href="project/view/<?= $this->escape($project['id']) ?>">
                                                 <?= $this->escape($project['name']) ?>
                                             </a>
                                         </li>
@@ -76,7 +76,7 @@
                                 <?php if (count($this->user['match']) > 0): ?>
                                     <?php foreach ($this->user['match'] as $match): ?>
                                         <li>
-                                            <a href="project/view/'<?= $this->escape($match['id']) ?>">
+                                            <a href="project/view/<?= $this->escape($match['id']) ?>">
                                                 <?= $this->escape($match['name']) ?>
                                             </a>
                                         </li>
