@@ -89,7 +89,9 @@ class dbObject {
   }
 
   public function save(){
-    if(!$this->saved||!$this->isPrimaryKeyComplete()){
+    if(!$this->isPrimaryKeyComplete())
+      throw new \Exeption("Incomplete primary key");
+    if(!$this->saved){
       $sql_keys = '';
       $sql_values = '';
       $values = $this->genIdCheckSQLAddParams();
@@ -99,8 +101,10 @@ class dbObject {
         $sql_values .= ($sql_values?',':'').' :'.$key;
       }
       foreach(static::$primaryKeys as $key){
-        if( !isset($this->id[$key]) || !$this->id[$key] )
+        if( !isset($this->id[$key]) || !$this->id[$key] ){
+          unset( $values[':'.$key] );
           continue;
+        }
         $value = $this->id[$key];
         $values[':'.$key] = ($value instanceof dbObject) ? $value->getId() : $value;
         $sql_keys .= ($sql_keys?',':'').' `'.$key.'`';
@@ -108,7 +112,10 @@ class dbObject {
       }
       $sql  = "INSERT INTO ".static::$table." ($sql_keys ) VALUES ($sql_values )";
       $sth = $this->db->prepare($sql, [ PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY ]);
-      $this->id = $sth->execute($values);
+      $sth->execute($values);
+      foreach(static::$primaryKeys as $key){
+        $this->id[$key] = $this->db->lastInsertId($key);
+      }
     } else {
       $sql_set = '';
       $values = $this->genIdCheckSQLAddParams();

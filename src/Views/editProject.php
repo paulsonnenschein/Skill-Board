@@ -1,4 +1,4 @@
-<h1>Projekt <?php echo $this->project->getId()?"bearbeiten":"erstellen"; ?></h1>
+<h1>Projekt <?php echo $this->project->getId()?"":"erstellen"; ?></h1>
 
 <form method="post" action="project/save" enctype="multipart/form-data">
 
@@ -14,14 +14,14 @@
   </div>
 
   <div class="form-group">
-    <label for="description">Description</label>
+    <label for="description">Beschreibung</label>
     <textarea id="description" class="form-control" type="text" name="description" maxlength="256" style="resize: vertical;" required="required"><?php
       echo htmlentities($this->project->get("description"));
     ?></textarea>
   </div>
 
   <div class="form-group">
-    <label for="programmingLanguages">Required programming languages</label>
+    <label for="programmingLanguages">Verwendete Programmiersprachen</label>
     <select id="programmingLanguages" class="form-control">
       <option value=""></option>
 <?php
@@ -63,8 +63,44 @@ EOF;
       </tbody>
     </table>
   </div>
-  
+
   <input type="submit" value="Speichern" class="btn btn-primary" />
+
+  <br/><br/>
+  <div class="form-group" style="display: <?php echo $this->project->getId()?"block":"none"; ?>;">
+    <h1>Entwickler</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+<?php
+        $developers = $this->project->getDevelopers([
+          'statusProject' => 'ACCEPTED'
+        ]);
+        foreach($developers as $developer){
+          $user = $developer->getUser();
+          $euser = [
+            'id' => $user->getId(),
+            'name' => htmlentities($user->get('vorname')." ".$user->get('nachname')),
+            'statusUser' => [
+              'ACCEPTED'  => 'Beigetreten',
+              'UNDECIDED' => 'Angefragt',
+              'DECLINED' => 'Abgelehnt',
+            ][$user->get('statusUser')]
+          ];
+          echo <<<EOF
+        <tr>
+          <td data-id="$euser[id]">$euser[name]</td>
+        </tr>
+EOF;
+        }
+?>
+    </table>
+  </div>
 
 </form>
 
