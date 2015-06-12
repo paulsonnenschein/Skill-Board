@@ -44,7 +44,7 @@
             </div>
         </div>
         <button type="submit" class="btn btn-primary">Ich bin ein Knopf</button>
-        <button type="reset" class="btn btn-default">Ich bin ein Knopf</button>
+        <button type="reset" class="btn btn-default">Ich bin auch ein Knopf</button>
     </form>
     <br>
     <br>
