@@ -80,7 +80,8 @@ class dbObject {
   }
 
   static protected function entryToDBO(PDO $db,Array $entry){
-    $p = new Project($db);
+    $class = get_called_class();
+    $p = new $class($db);
     $p->datas = $entry;
     foreach(static::$primaryKeys as $key)
       $p->id[$key] = $entry[$key];
@@ -88,7 +89,7 @@ class dbObject {
   }
 
   public function save(){
-    if(!$this->saved){
+    if(!$this->saved||!$this->isPrimaryKeyComplete()){
       $sql_keys = '';
       $sql_values = '';
       $values = $this->genIdCheckSQLAddParams();
@@ -126,6 +127,16 @@ class dbObject {
     $this->saved = true;
   }
 
+  public function remove(){
+    if(!$this->isPrimaryKeyComplete())
+      return;
+    $sql = "DELETE FROM ".static::$table." WHERE ".$this->idCheckSQL;
+    $sth = $this->db->prepare($sql, [ PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY ]);
+    $sth->execute($this->genIdCheckSQLAddParams());
+    $this->saved = false;
+    $this->id = [];
+  }
+  
   public function get($name){
     if(!isset(static::$fields[$name]))
       throw new \Exception("A ".static::$table." doesn't contain a $name\n");
