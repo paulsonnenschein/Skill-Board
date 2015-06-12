@@ -115,6 +115,22 @@ $routes = function (\Klein\Klein $router) {
         ]);
     });
 
+    $router->respond('GET', '/profile/edit/[i:id]', function($request, $response, $service, $app) {
+        $user = new User($app->db);
+        $user->getProfile($request->id);
+
+        $service->render(__DIR__ . '/Views/editProfile.php', [
+            'user' => $user->getProfile($_SESSION['user_id'])
+        ]);
+    });
+    $router->respond('GET', '/profile/edit', function($request, $response, $service, $app) {
+        $user = new User($app->db);
+
+        $service->render(__DIR__ . '/Views/editProfile.php', [
+            'user' => $user->getProfile($_SESSION['user_id'])
+        ]);
+    });
+
     // project route
     $router->respond('GET', '/project', function($request, $response, $service, $app) {
       $projects = Project::findAll($app->db,[
