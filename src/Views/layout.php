@@ -43,23 +43,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-"></span>Skill-Board</a>
+                <div class="navbar-brand" style="color:white;">Skill-Board</div>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="">Home</a></li>
-                    <li><a href="profile">Profil</a></li>
+                    <li><a href="profile">Mein Profil</a></li>
                     <li><a href="search">Suche</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li class="divider"></li>
-                            <li><a href="logout">Abmelden</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="logout"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
