@@ -1,4 +1,5 @@
 <div class="container">
+    <h1>Profile Bearbeiten</h1>
     <form class="form-horizontal" action='' method=''>
         <div class="form-group">
             <div class="col-lg-10">
@@ -42,5 +43,9 @@
                 <input class="form-control" type="password" id='name' name="name" value="" />
             </div>
         </div>
+        <button type="submit" class="btn btn-primary">Ich bin ein Knopf</button>
+        <button type="reset" class="btn btn-default">Ich bin ein Knopf</button>
     </form>
+    <br>
+    <br>
 </div>
