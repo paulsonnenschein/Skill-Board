@@ -1,3 +1,4 @@
+<div class="container">
 <h1>Projekt <?php echo $this->project->getId()?"":"erstellen"; ?></h1>
 
 <form method="post" action="project/save" enctype="multipart/form-data">
@@ -143,3 +144,4 @@ EOF;
     });
   })();
 </script>
+</div>
