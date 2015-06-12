@@ -6,11 +6,9 @@
 	</div>
 		<div id="info">
 			<div id="title">
-				<a target="_blank" href="http://scripteden.com/">Script Eden</a>
+				<h2>Script Eden <a href="profile/edit"><span class="glyphicon glyphicon-cog"></span></a></h2>
 			</div>
-			<div id="desc">Passionate designer</div>
-			<div id="desc">Curious developer</div>
-			<div id="desc">Tech geek</div>
+			<div id="desc">Some desc here</div>
 		</div>
 </div><br><br>				
 <div class="container">
