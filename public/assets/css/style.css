@@ -14,27 +14,25 @@
 }
 
 /* Menu */
-.menu-bar {
-    display: block;
-    position: absolute;
-}
-
 .menu {
     display: block;
     width: 100%;
     padding: 30px 10px 50px;
-    margin: 0 0 0 1%;
     text-align: center;
     background-color: #fff;
+    left: 0px;
 }
+
 .menu ul {
     margin-bottom: 0;
 }
+
 .menu a {
     color: #333;
     text-transform: uppercase;
     opacity: 0.8;
 }
+
 .menu a:hover {
     text-decoration: none;
     opacity: 1;
