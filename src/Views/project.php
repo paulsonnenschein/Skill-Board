@@ -10,7 +10,7 @@
         </thead>
         <tbody>
         <?php foreach($this->projects as $project): ?>
-            <tr onclick="location.href='project/edit/<?=$this->escape($project['id'])?>'">
+            <tr onclick="location.href='project/edit/<?=$this->escape($project['id'])?>'" style="cursor: pointer">
                 <td><?=$this->escape($project['name'])?></td>
                 <td><?=$this->escape($project['description'])?></td>
                 <td>
