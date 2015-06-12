@@ -32,6 +32,33 @@
 							<i class="fa fa-behance"></i>
 						</a>
 					</div>-->
-
-
-</div>
+					</div>
+					<div class="container">
+						<div class ="col-lg-12">
+							<div class="col-md-4 col-sm-6">
+								<div class="panel panel-default">
+								   <div class="panel-heading"><h4>Profil</h4></div>
+									<div class="panel-body">
+									  <p><span class="glyphicon glyphicon-envelope"></span> Max.Mustermann@gmail.com</p>
+									  <p><span class="glyphicon glyphicon-envelope"></span> Max.Mustermann@gmail.com</p>
+									</div>
+								 </div> 
+							</div>
+							<div class="col-md-4 col-sm-6">
+								<div class="panel panel-default">
+								   <div class="panel-heading"><h4>Projekte</h4></div>
+									<div class="panel-body">
+									  <p></p>
+									</div>
+								 </div> 
+							</div>
+							<div class="col-md-4 col-sm-6">
+								<div class="panel panel-default">
+								   <div class="panel-heading"><h4>Skills</h4></div>
+									<div class="panel-body">
+									  <p></p>
+									</div>
+								 </div> 
+							</div>
+						</div>
+					</div>
