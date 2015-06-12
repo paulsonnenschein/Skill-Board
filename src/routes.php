@@ -110,6 +110,7 @@ $routes = function (\Klein\Klein $router) {
         'projects' => $projects
       ]);
     });
+
     $router->respond('GET', '/project/new', function($request, $response, $service, $app) {
       $service->render(__DIR__ . '/Views/editProject.php', [
         'project' => new Project($app->db),
@@ -136,6 +137,24 @@ $routes = function (\Klein\Klein $router) {
       }
       $response->redirect(App::getBaseUrl().'project');
     });
+	
+
+    // project route
+    $router->respond('GET', '/search', function($request, $response, $service, $app) {
+		$service->render(__DIR__ . '/Views/search.php', []);
+    });
+	
+	// project route
+    $router->respond('POST', '/search', function($request, $response, $service, $app) {
+        $db = $app->db;
+		
+		$query = $request->param('query');
+
+		$result = $db->query('Select id, firstname, lastname, CONCAT(firstname, lastName,email) AS search FROM User HAVING search LIKE "%'.$query.'%"')->fetchAll();
+		$result2 = $db->query('Select id, CONCAT(name) AS search FROM Project HAVING search LIKE "%'.$query.'%"')->fetchAll();
+		$service->render(__DIR__ . '/Views/resultsearch.php', ['userList' => $result, 'projectList' => $result2]);
+	});
+
 };
 $routes($this);
 
