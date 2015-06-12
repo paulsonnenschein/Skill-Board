@@ -80,7 +80,8 @@ class dbObject {
   }
 
   static protected function entryToDBO(PDO $db,Array $entry){
-    $p = new Project($db);
+    $class = get_called_class();
+    $p = new $class($db);
     $p->datas = $entry;
     foreach(static::$primaryKeys as $key)
       $p->id[$key] = $entry[$key];
