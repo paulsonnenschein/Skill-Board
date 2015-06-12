@@ -284,6 +284,13 @@
     text-overflow: ellipsis;
 }
 
-
+.jumbotron{
+	padding:30px 15px;
+	margin-bottom:30px;
+	width: 100% !important;
+	color:inherit;
+	background-image: url(../images/bg1.jpg);
+	background-color:#eee;
+}
 
 /* search view */

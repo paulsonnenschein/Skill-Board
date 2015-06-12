@@ -1,14 +1,8 @@
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="jumbotron">
+						
+</div>
 
-
-				<div class="card hovercard">
-					<div class="cardheader">
-
-					</div>
-					<div class="avatar">
-						<img alt="" src="../public/assets/images/bg1.jpg">
-					</div>
-					<div class="info">
+<div class="info">
 						<div class="title">
 							<a target="_blank" href="http://scripteden.com/">Script Eden</a>
 						</div>
@@ -16,23 +10,8 @@
 						<div class="desc">Curious developer</div>
 						<div class="desc">Tech geek</div>
 					</div>
-					<!--<div class="bottom">
-						<a class="btn btn-primary btn-twitter btn-sm" href="#">
-							<i class="fa fa-twitter"></i>
-						</a>
-						<a class="btn btn-danger btn-sm" rel="publisher"
-						   href="#">
-							<i class="fa fa-google-plus"></i>
-						</a>
-						<a class="btn btn-primary btn-sm" rel="publisher"
-						   href="#">
-							<i class="fa fa-facebook"></i>
-						</a>
-						<a class="btn btn-warning btn-sm" rel="publisher" href="#">
-							<i class="fa fa-behance"></i>
-						</a>
-					</div>-->
-					</div>
+					
+					<br>
 					<div class="container">
 						<div class ="col-lg-12">
 							<div class="col-md-4 col-sm-6">
@@ -52,7 +31,7 @@
 										<div class="panel-heading" role="tab" id="headingOne">
 										  <h4 class="panel-title">
 											<a data-toggle="collapse" data-parent="#accordion1" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-											  <h4>Projekte</h4>
+											  <h4>Projekte <span class="glyphicon glyphicon-menu-down"></span></h4>
 											</a>
 										  </h4>
 										</div>
@@ -70,7 +49,7 @@
 										<div class="panel-heading" role="tab" id="headingTwo">
 										  <h4 class="panel-title">
 											<a data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-											  <h4>Skills</h4>
+											  <h4>Skills <span class="glyphicon glyphicon-menu-down"></span></h4>
 											</a>
 										  </h4>
 										</div>

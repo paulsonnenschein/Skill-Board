@@ -31,7 +31,6 @@
     <!-- JavaScript -->
     <script src="assets/javascript/jquery.min.js"></script>
     <script type="text/javascript" src="assets/javascript/bootstrap.min.js"></script>
-    <script type="text/javascript" src="assets/javascript/bluring.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-inverse">
