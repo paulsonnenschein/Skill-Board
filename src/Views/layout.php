@@ -31,21 +31,33 @@
     <!-- JavaScript -->
     <script src="assets/javascript/jquery.min.js"></script>
     <script type="text/javascript" src="assets/javascript/bootstrap.min.js"></script>
-    <script type="text/javascript" src="assets/javascript/bluring.js"></script>
 </head>
 <body>
-
-    <a class="menu-bar" data-toggle="collapse" href="#menu">
-        <img src="assets/images/logo.png" width="50px">
-    </a>
-
-    <div class="collapse menu" id="menu">
-        <ul class="list-inline">
-            <li><a href="/">Home</a></li>
-            <li><a href="profile">Mein Profil</a></li>
-            <li><a href="search">Suche</a></li>
-        </ul>
-    </div>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand" style="color:white;">Skill-Board</div>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="">Home</a></li>
+                    <li><a href="profile">Mein Profil</a></li>
+                    <li><a href="search">Suche</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="logout"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
 
     <div class="container">
         <div><!-- Flashes -->
@@ -64,8 +76,9 @@
                 </div>
             <?php endif; ?>
         </div>
-        <?php $this->yieldView(); // Render Page Content ?>
     </div>
+
+        <?php $this->yieldView(); // Render Page Content ?>
 
 </body>
 </html>
