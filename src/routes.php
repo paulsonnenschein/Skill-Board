@@ -149,26 +149,54 @@ $routes = function (\Klein\Klein $router) {
         ]);
     });
 
-    $router->respond('GET', '/project/view/[i:id]', function ($request, $response, $service, $app) {
+    $router->respond('GET', '/project/[i:id]', function ($request, $response, $service, $app) {
+        $projectHelper = new ProjectHelpers($app->db);
+        $projectInfo = $projectHelper->getProjectPage($request->id);
+
         $service->render(__DIR__ . '/Views/viewProject.php', [
-            'project' => new Project($app->db, $request->id),
-            'programmingLanguages' => ProgrammingLanguage::findAll($app->db)
+            'project' => $projectInfo
         ]);
     });
 
     $router->respond('GET', '/project/new', function ($request, $response, $service, $app) {
+        $project = new ProjectHelpers($app->db);
+        $langs = $project->getLangs();
+
         $service->render(__DIR__ . '/Views/editProject.php', [
-            'project' => new Project($app->db),
-            'programmingLanguages' => ProgrammingLanguage::findAll($app->db)
+            'edit' => false,
+            'langs' => $langs
         ]);
     });
+
+    $router->respond('POST', '/project/new', function ($request, $response, $service, $app) {
+        $project = new ProjectHelpers($app->db);
+        $input = $request->params(['name', 'description', 'pl']);
+        $id = $project->create($_SESSION['user_id'], $input);
+        $response->redirect(App::getBaseUrl() . 'project/'.$id);
+    });
+
+
     $router->respond('GET', '/project/edit/[i:id]', function ($request, $response, $service, $app) {
+        $projectHelper = new ProjectHelpers($app->db);
+        $projectInfo = $projectHelper->getProjectPage($request->id);
+
+        // Check if logged in user is owner
+        if ($projectInfo['project']['Owner_Id'] !== $_SESSION['user_id']) {
+            $service->flash('Nur der Besitzer eines Projekts kann dieses Bearbeiten!', 'error');
+            $service->back();
+            return;
+        }
+
+        $langs = $projectHelper->getLangs();
+
         $service->render(__DIR__ . '/Views/editProject.php', [
-            'project' => new Project($app->db, $request->id),
-            'programmingLanguages' => ProgrammingLanguage::findAll($app->db)
+            'edit' => true,
+            'project' => $projectInfo['project'],
+            'projectLangs' => $projectInfo['languages'],
+            'langs' => array_diff_key($langs, $projectInfo['languages'])
         ]);
     });
-    $router->respond('POST', '/project/save', function ($request, $response, $service, $app) {
+    $router->respond('POST', '/project/edit/[i:id]', function ($request, $response, $service, $app) {
         $id = ($_POST['id'] !== '') ? (int)$_POST['id'] : null;
         $project = new Project($app->db, $id);
         $project->set("name", $_POST['name']);
@@ -186,7 +214,7 @@ $routes = function (\Klein\Klein $router) {
             $requirement = new Requirement($app->db, $id, $plid);
             $requirement->save();
         }
-        $response->redirect(App::getBaseUrl() . 'project');
+        $response->redirect(App::getBaseUrl() . 'project/'.$id);
     });
 
 
@@ -201,7 +229,7 @@ $routes = function (\Klein\Klein $router) {
 
         $query = $request->param('query');
 
-        $result = $db->query('SELECT id, firstname, lastname, CONCAT(firstname, lastName,email) AS search FROM UserHelpers HAVING search LIKE "%' . $query . '%"')->fetchAll();
+        $result = $db->query('SELECT id, firstname, lastname, CONCAT(firstname, lastName,email) AS search FROM User HAVING search LIKE "%' . $query . '%"')->fetchAll();
         $result2 = $db->query('SELECT id, CONCAT(name) AS search FROM Project HAVING search LIKE "%' . $query . '%"')->fetchAll();
         $service->render(__DIR__ . '/Views/resultsearch.php', ['userList' => $result, 'projectList' => $result2]);
     });
