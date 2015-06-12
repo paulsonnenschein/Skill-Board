@@ -68,42 +68,6 @@ EOF;
   <input type="submit" value="Speichern" class="btn btn-primary" />
 
   <br/><br/>
-  <div class="form-group" style="display: <?php echo $this->project->getId()?"block":"none"; ?>;">
-    <h1>Entwickler</h1>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-<?php
-        $developers = $this->project->getDevelopers([
-          'statusProject' => 'ACCEPTED'
-        ]);
-        foreach($developers as $developer){
-          $user = $developer->getUser();
-          $euser = [
-            'id' => $user['id'],
-            'name' => htmlentities($user['firstName']." ".$user['lastName']),
-            'status' => [
-              'ACCEPTED'  => 'Beigetreten',
-              'UNDECIDED' => 'Angefragt',
-              'DECLINED' => 'Abgelehnt',
-            ][$developer->get('statusUser')]
-          ];
-          echo <<<EOF
-        <tr data-id="$euser[id]">
-          <td>$euser[name]</td>
-          <td>$euser[status]</td>
-        </tr>
-EOF;
-        }
-?>
-    </table>
-  </div>
-
 </form>
 
 <script>
