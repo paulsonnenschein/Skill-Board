@@ -47,20 +47,40 @@
 								 </div> 
 							</div>
 							<div class="col-md-4 col-sm-6">
-								<div class="panel panel-default">
-								   <div class="panel-heading"><h4>Projekte</h4></div>
-									<div class="panel-body">
-									  <p></p>
-									</div>
-								 </div> 
+								<div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
+								    <div class="panel panel-default">
+										<div class="panel-heading" role="tab" id="headingOne">
+										  <h4 class="panel-title">
+											<a data-toggle="collapse" data-parent="#accordion1" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+											  <h4>Projekte</h4>
+											</a>
+										  </h4>
+										</div>
+										<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+										  <div class="panel-body">
+											Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+										  </div>
+										</div>
+								    </div>
+								 </div>
 							</div>
 							<div class="col-md-4 col-sm-6">
-								<div class="panel panel-default">
-								   <div class="panel-heading"><h4>Skills</h4></div>
-									<div class="panel-body">
-									  <p><kbd>HTML 5</kbd>, <kbd>PHP 5</kbd>, <kbd>CSS 3</kbd></p>
-									</div>
-								 </div> 
+								<div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
+								    <div class="panel panel-default">
+										<div class="panel-heading" role="tab" id="headingTwo">
+										  <h4 class="panel-title">
+											<a data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+											  <h4>Skills</h4>
+											</a>
+										  </h4>
+										</div>
+										<div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+										  <div class="panel-body">
+											<p><kbd>HTML 5</kbd>, <kbd>PHP 5</kbd>, <kbd>CSS 3</kbd></p>
+										  </div>
+										</div>
+								    </div>
+								 </div>
 							</div>
 						</div>
 					</div>
