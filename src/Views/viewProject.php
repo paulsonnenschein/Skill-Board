@@ -21,28 +21,10 @@ echo htmlentities($this->project->get("description"));
 
         <div class="form-group">
             <label for="programmingLanguages">Verwendete Programmiersprachen</label>
-            <select id="programmingLanguages" class="form-control">
-                <option value=""></option>
-                <?php
-$requirements = $this->project->getRequirements();
-foreach($this->programmingLanguages as $pl){
-    foreach($requirements as $requirement)
-        if( $requirement->getId('programmingLanguage') == $pl->getId() )
-        continue 2;
-        $epl = [
-        'id' => $pl->getId(),
-        'name' => htmlentities($pl->get('name'))
-    ];
-    echo <<<EOF
-      <option value="$epl[id]">$epl[name]</option>
-
-EOF;
-}
-                ?>
-            </select>
             <table class="table">
                 <tbody id="pltable">
                     <?php
+$requirements = $this->project->getRequirements();
 foreach($requirements as $requirement){
     $pl = $requirement->getProgrammingLanguage();
     $epl = [
