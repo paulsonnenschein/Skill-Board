@@ -1,38 +1,28 @@
-<h1>Projekte</h1>
+<div class="container">
+    <h1>Projekte</h1>
 
-<table class="table">
-  <thead>
-    <th>Name</th>
-    <th>Beschreibung</th>
-    <th>Programmiersprachen</th>
-    <th>Erstelldatum</th>
-  </thead>
-  <tbody>
-<?php
-  foreach($this->projects as $project){
-    $langs = '';
-    $requirements = $project->getRequirements();
-    foreach($requirements as $requirement)
-      $langs .= ($langs?', ':'').$requirement->getProgrammingLanguage()->get('name');
-    $ep = [
-      "id" => $project->getId(),
-      "name" => htmlentities($project->get("name")),
-      "description" => htmlentities($project->get("description")),
-      "creationDate" => htmlentities($project->get("creationDate"))
-    ];
-    echo <<<EOF
-    <tr onclick="location.href='project/edit/$ep[id]'">
-      <td>$ep[name]</td>
-      <td>$ep[description]</td>
-      <td>$langs</td>
-      <td>$ep[creationDate]</td>
-    </tr>
+    <table class="table">
+        <thead>
+        <th>Name</th>
+        <th>Beschreibung</th>
+        <th>Programmiersprachen</th>
+        <th>Erstelldatum</th>
+        </thead>
+        <tbody>
+        <?php foreach($this->projects as $project): ?>
+            <tr onclick="location.href='project/edit/<?=$this->escape($project['id'])?>'">
+                <td><?=$this->escape($project['name'])?></td>
+                <td><?=$this->escape($project['description'])?></td>
+                <td>
+                    <?php foreach ($this->requirements[$project['id']] as $lang): ?>
+                        <kbd><?= $this->escape($lang['name']) ?></kbd>
+                    <?php endforeach; ?>
+                </td>
+                <td><?=$this->escape($project['creationDate'])?></td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
 
-EOF;
-  }
-?>
-  </tbody>
-</table>
-
-<a class="btn btn-primary" href="project/new">Neues Projekt erstellen</a>
-
+    <a class="btn btn-primary" href="project/new">Neues Projekt erstellen</a>
+</div>

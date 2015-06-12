@@ -139,11 +139,13 @@ $routes = function (\Klein\Klein $router) {
     $router->respond('GET', '/project', function ($request, $response, $service, $app) {
         $project = new ProjectHelpers($app->db);
 
-        $projects = Project::findAll($app->db, [
-            'owner' => $_SESSION['user_id']
-        ]);
+        $projects = $project->getAllFromOwner($_SESSION['user_id']);
+        $idList = array_column($projects, 'id');
+        $requirements = $project->getLangsForProjects($idList);
+
         $service->render(__DIR__ . '/Views/project.php', [
-            'projects' => $projects
+            'projects' => $projects,
+            'requirements' => $requirements
         ]);
     });
 
