@@ -13,32 +13,6 @@
     border-top: 1px solid #BDC3C7;
 }
 
-/* Menu */
-.menu {
-    display: block;
-    width: 100%;
-    padding: 30px 10px 50px;
-    text-align: center;
-}
-
-.menu ul {
-    margin-bottom: 0;
-}
-
-.menu a {
-    color: #333;
-    text-transform: uppercase;
-    opacity: 0.8;
-}
-
-.menu a:hover {
-    text-decoration: none;
-    opacity: 1;
-}
-
-
-
-
 /* jumbotron on login view */
 #loginJumbo {
     background: url(../images/bg1.jpg);
