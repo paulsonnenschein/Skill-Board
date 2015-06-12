@@ -264,11 +264,25 @@
     border: 5px solid rgba(31,71,136, 0.4);
 }
 
-.card.hovercard .info {
-    //padding: 4px 8px 10px;
+
+
+
+
+#jumboProfile{
+	padding:30px 15px;
+	margin-bottom:30px;
+	width: 100% !important;
+	color:inherit;
+	background-image: url(../images/bg1.jpg);
+	background-color:#eee;
 }
 
-.card.hovercard .info .title {
+#jumboProfile #info {
+    //padding: 4px 8px 10px;
+	text-align:center;
+}
+
+#jumboProfile  #info #title {
     margin-bottom: 4px;
     font-size: 24px;
     line-height: 1;
@@ -276,21 +290,12 @@
     vertical-align: middle;
 }
 
-.card.hovercard .info .desc {
+#jumboProfile #info #desc {
     overflow: hidden;
     font-size: 12px;
     line-height: 20px;
     color: #737373;
     text-overflow: ellipsis;
-}
-
-.jumbotron{
-	padding:30px 15px;
-	margin-bottom:30px;
-	width: 100% !important;
-	color:inherit;
-	background-image: url(../images/bg1.jpg);
-	background-color:#eee;
 }
 
 /* search view */

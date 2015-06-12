@@ -1,15 +1,15 @@
-<div class="jumbotron">
-						
+<div class="jumbotron" id="jumboProfile">
+	<div id="info">
+		<div id="title">
+			<a target="_blank" href="http://scripteden.com/">Script Eden</a>
+		</div>
+		<div id="desc">Passionate designer</div>
+		<div id="desc">Curious developer</div>
+		<div id="desc">Tech geek</div>
+	</div>
 </div>
 
-<div class="info">
-						<div class="title">
-							<a target="_blank" href="http://scripteden.com/">Script Eden</a>
-						</div>
-						<div class="desc">Passionate designer</div>
-						<div class="desc">Curious developer</div>
-						<div class="desc">Tech geek</div>
-					</div>
+
 					
 					<br>
 					<div class="container">
