@@ -130,6 +130,11 @@ $routes = function (\Klein\Klein $router) {
       $project->set("description", $_POST['description']);
       $project->save();
       $pl = $_POST['pl'];
+      $oldRequirements = $project->getRequirements();
+      foreach($oldRequirements as $opl){
+        if( !in_array( $opl->getId('programmingLanguage'), $pl ) )
+          $opl->remove();
+      }
       foreach($pl as $plid){
         $requirement = new Requirement($app->db,$id,$plid);
         $requirement->save();
