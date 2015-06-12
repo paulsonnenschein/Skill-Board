@@ -6,7 +6,7 @@
 	</div>
 		<div id="info">
 			<div id="title">
-				<h2><?php echo $this->escape($this->user['name']); ?><br /><a href="profile/edit"><span class="glyphicon glyphicon-cog"></span></a></h2>
+				<h2><?php echo $this->escape($this->user['name']); ?><br /><a href="profile/edit"><span class="glyphicon glyphicon-cog"></span></a> <a href="project/new"><span class="glyphicon glyphicon-plus"></span></a></h2>
 			</div>
 		</div>
 </div><br><br>				
