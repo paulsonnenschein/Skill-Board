@@ -142,6 +142,7 @@ $routes = function (\Klein\Klein $router) {
       $project->set("owner", $_SESSION['user_id']);
       $project->set("description", $_POST['description']);
       $project->save();
+      $id = $project->getId();
       $pl = $_POST['pl'];
       $oldRequirements = $project->getRequirements();
       foreach($oldRequirements as $opl){
