@@ -58,67 +58,6 @@
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
-    <!-- Modal -->
-    <div class="modal fade" id="profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Profil bearbeiten</h4>
-          </div>
-          <div class="modal-body">
-            <form class="form-horizontal" action='' method=''>
-                <div class="form-group">
-                    <div class="col-lg-10">
-                        <label for="name" class="control-label">Vorname</label>
-                        <input class="form-control" type="text" id='name' name="name" value="Max" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-lg-10">
-                        <label for="name" class="control-label">Nachname</label>
-                        <input class="form-control" type="text" id='name' name="name" value="Mustermann" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-lg-10">
-                        <label for="name" class="control-label">E-Mail</label>
-                        <input class="form-control" type="email" id='name' name="name" value="Max.Mustermann@gmail.com" />
-                    </div>
-                </div>
-                <div class='form-group'>
-                    <div class='col-lg-10'>
-                        <label class='control-label'>Beschreibung</label><br>
-                        <textarea class='form-control' name='description' rows='5' maxlength='400' ".$required." ></textarea>
-                    </div>
-                </div>
-                <div class='form-group'>
-                    <div class='col-lg-10'>
-                        <label class='control-label'>Programmiersprachen (mit komma separieren)</label><br>
-                        <textarea class='form-control' name='description' rows='5' maxlength='400' ".$required." ></textarea>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-lg-10">
-                        <label for="name" class="control-label">Passwort</label>
-                        <input class="form-control" type="password" id='name' name="name" value="1234" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-lg-10">
-                        <label for="name" class="control-label">Passwort bestätigen</label>
-                        <input class="form-control" type="password" id='name' name="name" value="" />
-                    </div>
-                </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
-            <button type="button" class="btn btn-primary">Änderungen speichern</button>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <div class="container">
         <div><!-- Flashes -->
