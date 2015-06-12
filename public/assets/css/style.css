@@ -223,15 +223,7 @@
     background-color: rgba(214, 224, 226, 0.2);
 }
 
-/*Box bei der Profilkarte*/
-.hovercard {
-    position: relative;
-    padding-top: 0;
-    overflow: hidden;
-    text-align: center;
-    background-color: #fff;
-    z-index: 100000000;
-}
+
 
 .cardheader {
     background: url("../images/bg1.jpg");
@@ -247,13 +239,26 @@
     z-index: -2;
 }
 
-.card.hovercard .avatar {
+
+
+
+
+/*Box bei der Profilkarte*/
+#jumboProfile #hovercard {
+    //position: relative;
+    margin-top: 140px;
+   // overflow: hidden;
+    text-align: center;
+    background-color: #fff;
+}
+
+#jumboProfile #hovercard #avatar {
     position: relative;
     top: -100px;
     margin-bottom: -80px;
 }
 
-.card.hovercard .avatar img {
+#jumboProfile  #hovercard #avatar img {
     width: 150px;
     height: 150px;
     max-width: 150px;
@@ -263,22 +268,16 @@
     border-radius: 50%;
     border: 5px solid rgba(31,71,136, 0.4);
 }
-
-
-
-
-
 #jumboProfile{
-	padding:30px 15px;
-	margin-bottom:30px;
-	width: 100% !important;
-	color:inherit;
-	background-image: url(../images/bg1.jpg);
-	background-color:#eee;
+	background: url("../images/bg1.jpg");
+    background-size: cover;
+    width: 100%;
+    height: 300px;
+    filter: blur(3px);
+    z-index: -2;
 }
 
 #jumboProfile #info {
-    //padding: 4px 8px 10px;
 	text-align:center;
 }
 
