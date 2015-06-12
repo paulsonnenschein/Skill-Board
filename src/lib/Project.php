@@ -5,6 +5,7 @@ namespace lib;
 use PDO;
 use lib\dbObject;
 use lib\Requirement;
+use lib\Developer;
 
 class Project extends dbObject {
 
@@ -39,6 +40,16 @@ class Project extends dbObject {
     return Requirement::findAll($this->db,[
       'project' => $this
     ]);
+  }
+
+  public function getDevelopers(Array $search=array()){
+    return Developer::findAll(
+      $this->db,
+      array_merge(
+        [ 'project' => $this ],
+        $search
+      )
+    );
   }
 
 }
