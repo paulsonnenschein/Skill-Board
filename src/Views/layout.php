@@ -34,7 +34,7 @@
     <script type="text/javascript" src="assets/javascript/bluring.js"></script>
 </head>
 <body>
-    <div class="menu" id="menu">
+    <div class="menu">
         <ul class="list-inline">
             <span>
                 <img src="assets/images/logo.png" width="100px">
