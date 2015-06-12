@@ -29,7 +29,7 @@ class UserHelpers
     {
         $this->logout();
 
-        $sql = "SELECT * FROM UserHelpers WHERE email = \"$username\" LIMIT 1;";
+        $sql = "SELECT * FROM User WHERE email = \"$username\" LIMIT 1;";
 
         $statement = $this->db->query($sql);
         $result = $statement->fetch();
@@ -58,7 +58,7 @@ class UserHelpers
      */
     public function getUserInfo($userId)
     {
-        $sql = "SELECT * FROM UserHelpers WHERE id = $userId LIMIT 1;";
+        $sql = "SELECT * FROM User WHERE id = $userId LIMIT 1;";
 
         $statement = $this->db->query($sql);
 
@@ -90,7 +90,7 @@ class UserHelpers
     {
         $userInfos['password'] = password_hash($userInfos['password'], PASSWORD_DEFAULT);
 
-        $sql = "INSERT INTO UserHelpers (email, password, firstName, lastName) VALUES " .
+        $sql = "INSERT INTO User (email, password, firstName, lastName) VALUES " .
             "(\"{$userInfos['email']}\", \"{$userInfos['password']}\", \"{$userInfos['firstName']}\", \"{$userInfos['lastName']}\");";
 
         $statement = $this->db->query($sql);
@@ -120,9 +120,9 @@ class UserHelpers
                 JOIN `requirements` ON (`requirements`.`Project_id` = `Project`.`id`)
                 LEFT JOIN `developer` ON (`developer`.`Project_id` = `Project`.`id`)
                 WHERE `requirements`.`ProgrammingLanguages_id` IN (
-                    SELECT `skills`.`ProgrammingLanguages_id` FROM `UserHelpers`
-                    JOIN `skills` ON (`skills`.`User_id` = `UserHelpers`.`id`)
-                    WHERE `UserHelpers`.`id` = " . $user['id'] . ")
+                    SELECT `skills`.`ProgrammingLanguages_id` FROM `User`
+                    JOIN `skills` ON (`skills`.`User_id` = `User`.`id`)
+                    WHERE `User`.`id` = " . $user['id'] . ")
                 AND (`developer`.`User_id` != " . $user['id'] . " OR `developer`.`User_id` IS NULL)";
 
         $statement = $this->db->query($sql);
@@ -130,9 +130,9 @@ class UserHelpers
 
         // Projects
         $sql = "SELECT `Project`.`id` AS `id`, `Project`.`name` AS `name` FROM `developer`
-                LEFT JOIN `UserHelpers` ON (`UserHelpers`.`id` = `developer`.`User_id`)
+                LEFT JOIN `User` ON (`User`.`id` = `developer`.`User_id`)
                 LEFT JOIN `Project` ON (`Project`.`id` = `developer`.`Project_id`)
-                WHERE `UserHelpers`.`id` = " . $user['id'];
+                WHERE `User`.`id` = " . $user['id'];
         $statement = $this->db->query($sql);
         $projects = $statement->fetchAll();
 
