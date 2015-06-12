@@ -21,8 +21,10 @@
     <meta name="robots" content="all"/>
 
     <!-- Icons -->
+    <!--This is a duplicate
     <link rel="shortcut icon" href="img/icons/favicon/favicon.png">
     <link rel="apple-touch-icon" href="img/icons/appleTouch/apple-touch-icon.png">
+    -->
 
     <!-- CSS -->
     <link rel="stylesheet" media="all" href="assets/css/style.css">
