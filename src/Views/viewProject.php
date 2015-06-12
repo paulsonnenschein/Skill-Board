@@ -8,19 +8,19 @@
                />
 
         <div class="form-group">
-            <label for="name">Name</label>
+            <label for="name">Name</label><br>
             <?php echo htmlentities($this->project->get("name")); ?>
         </div>
 
         <div class="form-group">
-            <label for="description">Beschreibung</label>
+            <label for="description">Beschreibung</label><br>
             <?php
 echo htmlentities($this->project->get("description"));
                 ?>
         </div>
 
         <div class="form-group">
-            <label for="programmingLanguages">Verwendete Programmiersprachen</label>
+            <label for="programmingLanguages">Verwendete Programmiersprachen</label><br>
             <table class="table">
                 <tbody id="pltable">
                     <?php
