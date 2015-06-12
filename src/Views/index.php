@@ -1,1 +1,3 @@
-<h1>content</h1>
+<div class="jumbotron" id="jumboIndex">
+
+</div>
