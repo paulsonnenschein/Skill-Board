@@ -43,7 +43,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href=""><span class="glyphicon glyphicon-"></span>Skill-Board</a>
+                <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-"></span>Skill-Board</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -82,8 +82,9 @@
                 </div>
             <?php endif; ?>
         </div>
-        <?php $this->yieldView(); // Render Page Content ?>
     </div>
+
+        <?php $this->yieldView(); // Render Page Content ?>
 
 </body>
 </html>
