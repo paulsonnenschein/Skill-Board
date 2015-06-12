@@ -39,8 +39,10 @@
 								<div class="panel panel-default">
 								   <div class="panel-heading"><h4>Profil</h4></div>
 									<div class="panel-body">
-									  <p><span class="glyphicon glyphicon-envelope"></span> Max.Mustermann@gmail.com</p>
-									  <p><span class="glyphicon glyphicon-envelope"></span> Max.Mustermann@gmail.com</p>
+										<p><span class="glyphicon glyphicon-user"></span> Max Mustermann</p>
+										<p><span class="glyphicon glyphicon-envelope"></span> Max.Mustermann@gmail.com</p>
+										<h3>Beschreibung</h3>
+										<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
 									</div>
 								 </div> 
 							</div>
@@ -56,7 +58,7 @@
 								<div class="panel panel-default">
 								   <div class="panel-heading"><h4>Skills</h4></div>
 									<div class="panel-body">
-									  <p></p>
+									  <p><kbd>HTML 5</kbd>, <kbd>PHP 5</kbd>, <kbd>CSS 3</kbd></p>
 									</div>
 								 </div> 
 							</div>
