@@ -2,6 +2,7 @@
 
 use lib\User;
 use lib\Project;
+use lib\Developer;
 use lib\Requirement;
 use lib\ProgrammingLanguage;
 
@@ -159,6 +160,15 @@ $routes = function (\Klein\Klein $router) {
         'project' => new Project($app->db,$request->id),
         'programmingLanguages' => ProgrammingLanguage::findAll($app->db)
       ]);
+    });
+    $router->respond('GET', '/project/[i:pid]/addDeveloper/[i:uid]', function($request, $response, $service, $app) {
+      $project = new Developer($app->db,$request->pid,$request->uid);
+      $project->set('statusProject','ACCEPTED');
+      $su = $project->get('statusUser');
+      if(!$su)
+        $project->set('statusUser','UNDECIDED');
+      $project->save();
+      $response->redirect($_SERVER['HTTP_REFERER']);
     });
     $router->respond('POST', '/project/save', function($request, $response, $service, $app) {
       $id = ($_POST['id']!=='')?(int)$_POST['id']:null;

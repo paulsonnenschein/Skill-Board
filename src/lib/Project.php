@@ -52,6 +52,34 @@ class Project extends dbObject {
     );
   }
 
+  public function getMatchingUsers($limit=10){
+    $sql = "
+SELECT u.*,d.* FROM User AS u
+INNER JOIN skills AS s
+  ON s.User_id = u.id
+INNER JOIN requirements AS r
+  ON r.ProgrammingLanguages_id = s.ProgrammingLanguages_id
+  AND r.Project_id = :project
+LEFT JOIN developer as d
+  ON d.User_id = s.User_id
+  AND d.Project_id = r.Project_id
+WHERE
+     d.statusProject = 'UNDECIDED'
+  OR d.statusProject IS NULL
+GROUP BY
+  u.id
+ORDER BY
+  COUNT(r.ProgrammingLanguages_id) DESC
+LIMIT $limit
+";
+    $sth = $this->db->prepare($sql);
+    $sth->execute([
+      ':project' => $this->getId()
+    ]);
+    $result = $sth->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+  }
+
 }
 
 ?>

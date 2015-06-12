@@ -45,8 +45,6 @@ EOF;
             </table>
         </div>
 
-
-        <br/><br/>
         <div class="form-group" style="display: <?php echo $this->project->getId()?"block":"none"; ?>;">
             <h1>Entwickler</h1>
             <table class="table">
@@ -57,7 +55,7 @@ EOF;
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
+<?php
 $developers = $this->project->getDevelopers([
     'statusProject' => 'ACCEPTED'
 ]);
@@ -67,9 +65,9 @@ foreach($developers as $developer){
         'id' => $user['id'],
         'name' => htmlentities($user['firstName']." ".$user['lastName']),
         'status' => [
-            'ACCEPTED'  => 'Beigetreten',
-            'UNDECIDED' => 'Angefragt',
-            'DECLINED' => 'Abgelehnt',
+          'ACCEPTED'  => 'Beigetreten',
+          'UNDECIDED' => 'Angefragt',
+          'DECLINED' => 'Abgelehnt',
         ][$developer->get('statusUser')]
     ];
     echo <<<EOF
@@ -80,47 +78,44 @@ foreach($developers as $developer){
 EOF;
 }
                     ?>
+              </tbody>
+            </table>
+            <h3>Vorgeschlagene Entwickler</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Status</th>
+                  <td class="symbols"></td>
+                </tr>
+              </thead>
+              <tbody>
+<?php
+  $users = $this->project->getMatchingUsers();
+  foreach($users as $user){
+      $e = [
+        'uid' => $user['id'],
+        'pid' => $this->project->getId(),
+        'name' => htmlentities($user['firstName']." ".$user['lastName']),
+        'status' => [
+          'ACCEPTED'  => 'Beigetreten',
+          'UNDECIDED' => 'Angefragt',
+          'DECLINED' => 'Abgelehnt',
+          '' => '',
+        ][$user['statusUser']]
+      ];
+      echo <<<EOF
+        <tr>
+          <td>$e[name]</td>
+          <td>$e[status]</td>
+          <td class="symbols"><a href="project/$e[pid]/addDeveloper/$e[uid]" class="btn btn-default glyphicon glyphicon-plus"></a></td>
+        </tr>
+EOF;
+}
+?>
+              </tbody>
             </table>
         </div>
 
     </form>
-
-    <script>
-        (function(){
-            var programmingLanguages = document.getElementById("programmingLanguages");
-            var pltable  = document.getElementById("pltable" );
-            programmingLanguages.addEventListener("change",function(event){
-                var tr = document.createElement("tr");
-                var td = document.createElement("td");
-                var input = document.createElement("input");
-                var name = this.options[this.selectedIndex].text;
-                pltable.appendChild(tr);
-                tr.appendChild(td);
-                td.appendChild(document.createTextNode(name));
-                td.appendChild(input);
-                input.value = this.value;
-                input.type = "hidden";
-                input.name = "pl[]";
-                td.setAttribute("data-id",this.value);
-                td.setAttribute("data-name",name);
-                this.remove(this.selectedIndex);
-                this.value='';
-            });
-            pltable.addEventListener("click",function(event){
-                var entry = event.target;
-                do if(entry.getAttribute("data-id"))
-                    break;
-                while(entry=entry.parentElement);
-                if(!entry)
-                    return;
-                entry.parentElement.removeChild(entry);
-                var id = entry.getAttribute("data-id");
-                var name = entry.getAttribute("data-name");
-                var option = document.createElement("option");
-                option.text = name;
-                option.value = id;
-                programmingLanguages.add(option);
-            });
-        })();
-    </script>
 </div>
