@@ -80,7 +80,7 @@
         </div>
     </div>
 
-        <?php $this->yieldView(); // Render Page Content ?>
+    <?php $this->yieldView(); // Render Page Content ?>
 
 </body>
 </html>

@@ -5,7 +5,8 @@
 				<div class="panel-body">
 					<h1>Skill-Board</h1>
 					<h3>Herzlich Willkommen auf der Skill-Board Seite!</h3>
-					<p>Auf der offiziellen Webseite von der Firma Skill-Board können Sie ihre Programmierskills in ihr Profil eintragen und mit diesen nach geeigneten Aufträge für sich suchen.</p>
+					<p>Auf der offiziellen Webseite von der Firma Skill-Board können Sie ihre Programmierskills in ihr Profil eintragen
+                        und mit diesen nach geeigneten Aufträge für sich suchen.</p>
 				</div>
 			</div>
 		</div>

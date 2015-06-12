@@ -11,7 +11,7 @@
             </div>
             <div><!-- Flashes -->
                 <?php if(!empty($flashes = $this->flashes('login-error'))): ?>
-                    <hr/>
+                    <hr class="hr"/>
                     <div class="alert alert-danger" role="alert">
                     <?php foreach($flashes as $flash): ?>
                         <?=$flash ?>
@@ -19,8 +19,12 @@
                     </div>
                 <?php endif; ?>
             </div>
-            <hr class="hr">
-            <p id="signUp">Not registered yet?<br><a href="signup">Sign Up now</a></p>
+            <hr class="hr"/>
+            <p id="signUp">
+                Not registered yet?
+                <br>
+                <a href="signup">Sign Up now</a>
+            </p>
         </div>
     </div>
 </div>
