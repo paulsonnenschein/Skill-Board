@@ -43,8 +43,8 @@
                 <input class="form-control" type="password" id='name' name="name" value="" />
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Ich bin ein Knopf</button>
-        <button type="reset" class="btn btn-default">Ich bin ein Knopf</button>
+        <button type="submit" class="btn btn-primary">Er ist tot, Jim!</button>
+        <button type="reset" class="btn btn-default">Nein, ich bin ein Knopf</button>
     </form>
     <br>
     <br>

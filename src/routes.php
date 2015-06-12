@@ -100,14 +100,6 @@ $routes = function (\Klein\Klein $router) {
     });
 
     // profile route
-    $router->respond('GET', '/profile/[i:id]', function($request, $response, $service, $app) {
-        $user = new User($app->db);
-        $user->getProfile($request->id);
-
-        $service->render(__DIR__ . '/Views/profile.php', [
-            'user' => $user->getProfile($_SESSION['user_id'])
-        ]);
-    });
     $router->respond('GET', '/profile', function($request, $response, $service, $app) {
         $user = new User($app->db);
 
@@ -116,16 +108,26 @@ $routes = function (\Klein\Klein $router) {
         ]);
     });
 
-    $router->respond('GET', '/profile/edit/[i:id]', function($request, $response, $service, $app) {
+    $router->respond('GET', '/profile/[i:id]', function($request, $response, $service, $app) {
         $user = new User($app->db);
-        $user->getProfile($request->id);
+
+        $service->render(__DIR__ . '/Views/profile.php', [
+            'user' => $user->getProfile($request->id)
+        ]);
+    });
+
+    $router->respond('GET', '/profile/edit', function($request, $response, $service, $app) {
+        $user = new User($app->db);
 
         $service->render(__DIR__ . '/Views/editProfile.php', [
             'user' => $user->getProfile($_SESSION['user_id'])
         ]);
     });
-    $router->respond('GET', '/profile/edit', function($request, $response, $service, $app) {
+
+    $router->respond('POST', '/profile/edit', function($request, $response, $service, $app) {
         $user = new User($app->db);
+
+
 
         $service->render(__DIR__ . '/Views/editProfile.php', [
             'user' => $user->getProfile($_SESSION['user_id'])

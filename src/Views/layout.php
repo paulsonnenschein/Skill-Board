@@ -59,7 +59,6 @@
         </div><!-- /.container-fluid -->
     </nav>
 
-
     <div class="container">
         <div><!-- Flashes -->
             <?php if(!empty($flashes = $this->flashes('error'))): ?>
