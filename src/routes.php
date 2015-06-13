@@ -197,23 +197,10 @@ $routes = function (\Klein\Klein $router) {
         ]);
     });
     $router->respond('POST', '/project/edit/[i:id]', function ($request, $response, $service, $app) {
-        $id = ($_POST['id'] !== '') ? (int)$_POST['id'] : null;
-        $project = new Project($app->db, $id);
-        $project->set("name", $_POST['name']);
-        $project->set("owner", $_SESSION['user_id']);
-        $project->set("description", $_POST['description']);
-        $project->save();
-        $id = $project->getId();
-        $pl = $_POST['pl'];
-        $oldRequirements = $project->getRequirements();
-        foreach ($oldRequirements as $opl) {
-            if (!in_array($opl->getId('programmingLanguage'), $pl))
-                $opl->remove();
-        }
-        foreach ($pl as $plid) {
-            $requirement = new Requirement($app->db, $id, $plid);
-            $requirement->save();
-        }
+        $project = new ProjectHelpers($app->db);
+        $input = $request->params(['name', 'description', 'pl']);
+        $input['id'] = $request->id;
+        $id = $project->update($input);
         $response->redirect(App::getBaseUrl() . 'project/'.$id);
     });
 
@@ -230,7 +217,7 @@ $routes = function (\Klein\Klein $router) {
         $query = $request->param('query');
 
         $result = $db->query('SELECT id, firstname, lastname, CONCAT(firstname, lastName,email) AS search FROM User HAVING search LIKE "%' . $query . '%"')->fetchAll();
-        $result2 = $db->query('SELECT id, CONCAT(name) AS search FROM Project HAVING search LIKE "%' . $query . '%"')->fetchAll();
+        $result2 = $db->query('SELECT id, name, CONCAT(name) AS search FROM Project HAVING search LIKE "%' . $query . '%"')->fetchAll();
         $service->render(__DIR__ . '/Views/resultsearch.php', ['userList' => $result, 'projectList' => $result2]);
     });
 
