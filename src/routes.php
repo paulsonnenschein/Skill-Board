@@ -1,9 +1,6 @@
 <?php
 
-use lib\ProgrammingLanguage;
-use lib\Project;
 use lib\ProjectHelpers;
-use lib\Requirement;
 use lib\UserHelpers;
 
 /**
@@ -64,7 +61,7 @@ $routes = function (\Klein\Klein $router) {
 
         $user = new UserHelpers($app->db);
 
-        if ($user->createUser($userdata)) {
+        if ($user->create($userdata)) {
             $user->login($userdata['email'], $userdata['password']);
             $service->flash(sprintf('Du bist registriert und eingeloggt %s %s.', $userdata['firstName'], $userdata['lastName']));
             $response->redirect(App::getBaseUrl());
@@ -121,18 +118,26 @@ $routes = function (\Klein\Klein $router) {
 
     $router->respond('GET', '/profile/edit', function ($request, $response, $service, $app) {
         $user = new UserHelpers($app->db);
+        $project = new ProjectHelpers($app->db);
+
+        $userInfo = $user->getLoginUserInfo();
+        $userLangs = $user->getUserLangs($_SESSION['user_id']);
+        $langs = $project->getLangs();
 
         $service->render(__DIR__ . '/Views/editProfile.php', [
-            'user' => $user->getProfile($_SESSION['user_id'])
+            'user' => $userInfo,
+            'langs' => array_diff_key($langs, $userLangs),
+            'userLangs' => $userLangs
+
         ]);
     });
 
     $router->respond('POST', '/profile/edit', function ($request, $response, $service, $app) {
         $user = new UserHelpers($app->db);
-
-        $service->render(__DIR__ . '/Views/editProfile.php', [
-            'user' => $user->getProfile($_SESSION['user_id'])
-        ]);
+        $input = $request->params(['firstName', 'lastName', 'email', 'description', 'pl']);
+        $input['id'] = $_SESSION['user_id'];
+        $user->update($input);
+        $response->redirect(App::getBaseUrl() . 'profile');
     });
 
     // project route
@@ -172,7 +177,7 @@ $routes = function (\Klein\Klein $router) {
         $project = new ProjectHelpers($app->db);
         $input = $request->params(['name', 'description', 'pl']);
         $id = $project->create($_SESSION['user_id'], $input);
-        $response->redirect(App::getBaseUrl() . 'project/'.$id);
+        $response->redirect(App::getBaseUrl() . 'project/' . $id);
     });
 
 
@@ -184,6 +189,7 @@ $routes = function (\Klein\Klein $router) {
         if ($projectInfo['project']['Owner_Id'] !== $_SESSION['user_id']) {
             $service->flash('Nur der Besitzer eines Projekts kann dieses Bearbeiten!', 'error');
             $service->back();
+
             return;
         }
 
@@ -200,8 +206,8 @@ $routes = function (\Klein\Klein $router) {
         $project = new ProjectHelpers($app->db);
         $input = $request->params(['name', 'description', 'pl']);
         $input['id'] = $request->id;
-        $id = $project->update($input);
-        $response->redirect(App::getBaseUrl() . 'project/'.$id);
+        $project->update($input);
+        $response->redirect(App::getBaseUrl() . 'project/' . $request->id);
     });
 
 

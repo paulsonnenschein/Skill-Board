@@ -178,7 +178,6 @@ class ProjectHelpers {
         if (count($input['pl']) > 0) {
             $langString = "({$input['id']}, \"" . implode("\"), ({$input['id']}, \"", $input['pl']) . '")';
 
-
             $sql = "INSERT INTO requirements (Project_id, ProgrammingLanguages_id)
                     VALUES $langString;";
 

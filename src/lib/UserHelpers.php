@@ -66,6 +66,27 @@ class UserHelpers
     }
 
     /**
+     * @param int $userId
+     *
+     * @return array
+     */
+    public function getUserLangs($userId)
+    {
+        $sql = "SELECT `ProgrammingLanguages`.* FROM `skills`
+                LEFT JOIN `ProgrammingLanguages` ON (`ProgrammingLanguages`.`id` = `skills`.`ProgrammingLanguages_id`)
+                WHERE `skills`.`User_id`='" . $userId . "' ORDER BY `name` ASC";
+        $statement = $this->db->query($sql);
+        $result = $statement->fetchAll();
+
+        $return = [];
+        foreach ($result as $row) {
+            $return[$row['id']] = $row;
+        }
+
+        return $return;
+    }
+
+    /**
      *
      */
     public function logout()
@@ -86,7 +107,7 @@ class UserHelpers
      *
      * @return bool
      */
-    public function createUser(Array $userInfos)
+    public function create(Array $userInfos)
     {
         $userInfos['password'] = password_hash($userInfos['password'], PASSWORD_DEFAULT);
 
@@ -100,6 +121,36 @@ class UserHelpers
     }
 
     /**
+     * @param array $input
+     *
+     * @return bool
+     */
+    public function update(Array $input)
+    {
+        $sql = "UPDATE User
+                SET firstName = \"{$input['firstName']}\", lastName = \"{$input['lastName']}\",
+                description = \"{$input['description']}\", email = \"{$input['email']}\"
+                WHERE id = {$input['id']};";
+
+        $statement = $this->db->query($sql);
+
+        $sql = "DELETE FROM skills WHERE User_id = {$input['id']};";
+
+        $this->db->query($sql);
+
+        if (count($input['pl']) > 0) {
+            $langString = "({$input['id']}, \"" . implode("\"), ({$input['id']}, \"", $input['pl']) . '")';
+
+            $sql = "INSERT INTO skills (user_id, ProgrammingLanguages_id)
+                    VALUES $langString;";
+
+            $this->db->query($sql);
+        }
+
+        return $statement->rowCount() === 1;
+    }
+
+    /**
      * @param int $id
      *
      * @return array
@@ -109,11 +160,7 @@ class UserHelpers
         $user = $this->getUserInfo($id);
 
         // Skills
-        $sql = "SELECT `ProgrammingLanguages`.`name` AS `name` FROM `skills`
-                LEFT JOIN `ProgrammingLanguages` ON (`ProgrammingLanguages`.`id` = `skills`.`ProgrammingLanguages_id`)
-                WHERE `skills`.`User_id`='" . $user['id'] . "' ORDER BY `name` ASC";
-        $statement = $this->db->query($sql);
-        $skills = $statement->fetchAll();
+        $skills = $this->getUserLangs($id);
 
         // Matches
         $sql = "SELECT DISTINCT `Project`.`id` AS `id`, `Project`.`name` AS `name` FROM `Project`
