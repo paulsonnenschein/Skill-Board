@@ -71,6 +71,8 @@
                                                 </a>
                                             <?php elseif ($project['statusProject'] === 'ACCEPTED' && $project['statusUser'] === 'ACCEPTED'): ?>
                                                 <span class="label label-success">Teilnehmer</span>
+                                            <?php else: ?>
+                                                <span class="label label-success">Ersteller</span>
                                             <?php endif; ?>
                                             </td>
                                         </tr>
