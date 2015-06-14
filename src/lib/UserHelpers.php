@@ -169,17 +169,17 @@ class UserHelpers
                 WHERE `requirements`.`ProgrammingLanguages_id` IN (
                     SELECT `skills`.`ProgrammingLanguages_id` FROM `User`
                     JOIN `skills` ON (`skills`.`User_id` = `User`.`id`)
-                    WHERE `User`.`id` = " . $user['id'] . ")
-                AND (`developer`.`User_id` != " . $user['id'] . " OR `developer`.`User_id` IS NULL)";
+                    WHERE `User`.`id` = {$user['id']})
+                AND `Project`.`Owner_id` <> {$user['id']}
+                AND (`developer`.`User_id` <> {$user['id']} OR `developer`.`User_id` IS NULL)";
 
         $statement = $this->db->query($sql);
         $matches = $statement->fetchAll();
 
         // Projects
-        $sql = "SELECT `Project`.*, `developer`.* FROM `developer`
-                LEFT JOIN `User` ON (`User`.`id` = `developer`.`User_id`)
-                LEFT JOIN `Project` ON (`Project`.`id` = `developer`.`Project_id`)
-                WHERE `User`.`id` = {$user['id']}
+        $sql = "SELECT * FROM Project
+                LEFT JOIN developer on developer.Project_id = Project.id
+                WHERE `developer`.`User_id` = {$user['id']} OR `Project`.`Owner_id` = {$user['id']}
                 ORDER BY `developer`.statusUser, `developer`.statusProject;";
         $statement = $this->db->query($sql);
         $projects = $statement->fetchAll();
