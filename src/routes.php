@@ -141,7 +141,7 @@ $routes = function (\Klein\Klein $router) {
     });
 
     // project route
-    $router->respond('GET', '/project', function ($request, $response, $service, $app) {
+    /* $router->respond('GET', '/project', function ($request, $response, $service, $app) {
         $project = new ProjectHelpers($app->db);
 
         $projects = $project->getAllFromOwner($_SESSION['user_id']);
@@ -152,7 +152,7 @@ $routes = function (\Klein\Klein $router) {
             'projects' => $projects,
             'requirements' => $requirements
         ]);
-    });
+    });*/
 
     $router->respond('GET', '/project/[i:id]', function ($request, $response, $service, $app) {
         $projectHelper = new ProjectHelpers($app->db);
@@ -180,7 +180,6 @@ $routes = function (\Klein\Klein $router) {
         $response->redirect(App::getBaseUrl() . 'project/' . $id);
     });
 
-
     $router->respond('GET', '/project/edit/[i:id]', function ($request, $response, $service, $app) {
         $projectHelper = new ProjectHelpers($app->db);
         $projectInfo = $projectHelper->getProjectPage($request->id);
@@ -202,6 +201,7 @@ $routes = function (\Klein\Klein $router) {
             'langs' => array_diff_key($langs, $projectInfo['languages'])
         ]);
     });
+
     $router->respond('POST', '/project/edit/[i:id]', function ($request, $response, $service, $app) {
         $project = new ProjectHelpers($app->db);
         $input = $request->params(['name', 'description', 'pl']);
@@ -210,6 +210,55 @@ $routes = function (\Klein\Klein $router) {
         $response->redirect(App::getBaseUrl() . 'project/' . $request->id);
     });
 
+    $router->respond('GET', '/profile/applyproject/[i:id]', function ($request, $response, $service, $app) {
+        $sql = "INSERT INTO developer (Project_id, User_id, statusProject, statusUser)
+                VALUES ('$request->id', '{$_SESSION['user_id']}', 'UNDECIDED', 'ACCEPTED');";
+
+        if ($app->db->query($sql)->rowCount() === 1) {
+            $service->flash('Projekt wurde angefragt!');
+        } else {
+            $service->flash('Konnte nicht angefragt werden!', 'error');
+        }
+        $service->back();
+    });
+
+    $router->respond('GET', '/profile/respondproject/[i:id]/[a:response]', function ($request, $response, $service, $app) {
+        $response = $request->response === 'ACCEPTED' ? 'ACCEPTED' : 'DECLINED';
+        $sql = "UPDATE developer SET statusUser = '$response'
+                WHERE Project_id = '$request->id' AND User_id = '{$_SESSION['user_id']}' AND statusProject = 'ACCEPTED';";
+
+        if ($app->db->query($sql)->rowCount() === 1) {
+            $service->flash('Projekt wurde genatwortet!');
+        } else {
+            $service->flash('Konnte nicht antworten!', 'error');
+        }
+        $service->back();
+    });
+
+    $router->respond('GET', '/project/[i:id]/applyuser/[i:userId]', function ($request, $response, $service, $app) {
+        $sql = "INSERT INTO developer (Project_id, User_id, statusProject, statusUser)
+                VALUES ('$request->id', '$request->userId', 'ACCEPTED', 'UNDECIDED');";
+
+        if ($app->db->query($sql)->rowCount() === 1) {
+            $service->flash('Projekt wurde angefragt!');
+        } else {
+            $service->flash('Konnte nicht angefragt werden!', 'error');
+        }
+        $service->back();
+    });
+
+    $router->respond('GET', '/project/[i:id]/responduser/[i:userId]/[a:response]', function ($request, $response, $service, $app) {
+        $response = $request->response === 'ACCEPTED' ? 'ACCEPTED' : 'DECLINED';
+        $sql = "UPDATE developer SET statusProject = '$response'
+                WHERE Project_id = '$request->id' AND User_id = '$request->userId' AND statusUser = 'ACCEPTED';";
+
+        if ($app->db->query($sql)->rowCount() === 1) {
+            $service->flash('Projekt wurde genatwortet!');
+        } else {
+            $service->flash('Konnte nicht antworten!', 'error');
+        }
+        $service->back();
+    });
 
     // project route
     $router->respond('GET', '/search', function ($request, $response, $service, $app) {
