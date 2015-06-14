@@ -106,7 +106,9 @@ class ProjectHelpers {
      */
     private function getProjectDevs($id)
     {
-        $sql = "SELECT User.* FROM developer JOIN User on User.id = developer.User_id WHERE Project_id = $id;";
+        $sql = "SELECT User.*, developer.* FROM developer
+                JOIN User on User.id = developer.User_id WHERE Project_id = $id
+                ORDER BY `developer`.statusUser, `developer`.statusProject;";
 
         return $this->db->query($sql)->fetchAll();
     }
