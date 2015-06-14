@@ -57,18 +57,22 @@
                                             </td>
                                             <td>
                                             <?php if($project['statusUser'] === 'DECLINED'): ?>
-                                                <span class="label label-danger">Du hast abgelehnt</span>
+                                                <span class="label label-danger">User hat abgelehnt</span>
                                             <?php elseif ($project['statusProject'] === 'DECLINED'): ?>
-                                                <span class="label label-danger">Du wurdest abgelehnt</span>
+                                                <span class="label label-danger">User wurde abgelehnt</span>
                                             <?php elseif ($project['statusUser'] === 'ACCEPTED' && $project['statusProject'] === 'UNDECIDED'): ?>
-                                                <span class="label label-primary">Angefragt</span>
-                                            <?php elseif ($project['statusProject'] === 'ACCEPTED' && $project['statusUser'] === 'UNDECIDED' ): ?>
+                                                <span class="label label-primary">User hat angefragt</span>
+                                            <?php elseif ($project['statusProject'] === 'ACCEPTED' && $project['statusUser'] === 'UNDECIDED'): ?>
+                                                <?php if($this->user['id'] === $_SESSION['user_id']): ?>
                                                 <a href="profile/respondproject/<?= $this->escape($project['id']) ?>/ACCEPTED" class="btn btn-success btn-xs">
                                                     Annehmen
                                                 </a>
                                                 <a href="profile/respondproject/<?= $this->escape($project['id']) ?>/DECLINED" class="btn btn-danger btn-xs">
                                                     Ablehnen
                                                 </a>
+                                                <?php else: ?>
+                                                    <span class="label label-primary">User wurde angefragt</span>
+                                                <?php endif; ?>
                                             <?php elseif ($project['statusProject'] === 'ACCEPTED' && $project['statusUser'] === 'ACCEPTED'): ?>
                                                 <span class="label label-success">Teilnehmer</span>
                                             <?php else: ?>
@@ -109,9 +113,11 @@
                                             </a>
                                         </td>
                                         <td>
+                                            <?php if($this->user['id'] === $_SESSION['user_id']): ?>
                                             <a href="profile/applyproject/<?= $this->escape($match['id']) ?>" class="btn btn-primary btn-xs">
                                                 Anfragen
                                             </a>
+                                            <?php endif; ?>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

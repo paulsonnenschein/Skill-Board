@@ -46,12 +46,16 @@
                     <?php elseif ($dev['statusProject'] === 'DECLINED'): ?>
                         <span class="label label-danger">Ist abgelehnt worden</span>
                     <?php elseif ($dev['statusUser'] === 'ACCEPTED' && $dev['statusProject'] === 'UNDECIDED'): ?>
+                        <?php if($this->project['project']['Owner_Id'] === $_SESSION['user_id']): ?>
                         <a href="project/<?=$this->escape($this->project['project']['id'])?>/responduser/<?= $this->escape($dev['id']) ?>/ACCEPTED" class="btn btn-success btn-xs">
                             Annehmen
                         </a>
                         <a href="project/<?=$this->escape($this->project['project']['id'])?>/responduser/<?= $this->escape($dev['id']) ?>/DECLINED" class="btn btn-danger btn-xs">
                             Ablehnen
                         </a>
+                        <?php else: ?>
+                            <span class="label label-primary">User hat angefragt</span>
+                        <?php endif; ?>
                     <?php elseif ($dev['statusProject'] === 'ACCEPTED' && $dev['statusUser'] === 'UNDECIDED' ): ?>
                         <span class="label label-primary">Angefragt</span>
                     <?php elseif ($dev['statusProject'] === 'ACCEPTED' && $dev['statusUser'] === 'ACCEPTED'): ?>
@@ -70,6 +74,7 @@
         <thead>
             <tr>
                 <th>Name</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -79,9 +84,13 @@
                     <a href="profile/<?=$this->escape($dev['id'])?>">
                         <?=$this->escape($dev['firstName'] . ' ' . $dev['lastName'])?>
                     </a>
+                </td>
+                <td>
+                    <?php if($this->project['project']['Owner_Id'] === $_SESSION['user_id']): ?>
                     <a href="project/<?=$this->escape($this->project['project']['id'])?>/applyuser/<?=$this->escape($dev['id'])?>" class="btn btn-primary btn-xs">
                         Anfragen
                     </a>
+                    <?php endif; ?>
                 </td>
             </tr>
         <?php endforeach; ?>
