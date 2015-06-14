@@ -121,6 +121,7 @@ class User {
 
         // Output
         $array = array(
+            'data' => $user,
             'gravatar' => md5(strtolower(trim($user['email']))),
             'name' => $user['firstName'].' '.$user['lastName'],
             'description' => $user['description'],
@@ -128,6 +129,63 @@ class User {
             'project' => $projects,
             'skill' => $skills
         );
+
+        return $array;
+    }
+
+    public function setProfile($id,$data){
+        $error = array();
+        $success = array();
+        if(!empty($data['password']) && !empty($data['password2'])) {
+            if ($data['password'] != $data['password2']) {
+                $error[] = 'Passwörter sind nicht gleich.';
+            } else {
+                $sql = "UPDATE `user` SET `password` = '" . password_hash($data['password'], PASSWORD_DEFAULT) . "' WHERE `id` = " . $id;
+                if ($this->db->query($sql)) {
+                    $success[] = "Das Passwort wurde geändert.";
+                } else {
+                    $error[] = "Das Passwort konnte nicht geändert werden.";
+                }
+            }
+        }
+
+        $sql = "UPDATE `user` SET `firstName`='".$data['firstName']."', `lastName`='".$data['lastName']."', `email`='".$data['email']."', `description`='".$data['description']."' WHERE `id` = ".$id;
+        if($this->db->query($sql)){
+            $success[] = 'Daten wurden erfolgreich gespeichert.';
+        } else {
+            $error[] = 'Daten konnten nicht gespeichert werden.';
+        }
+
+        $sql = "DELETE FROM `skills` WHERE `User_id` = '".$id."'";
+        $this->db->query($sql);
+
+        foreach(explode(',',$data['programmingLanguages']) AS $language){
+            $sql = "SELECT `id` FROM `programminglanguages` WHERE `name` LIKE '".$language."' LIMIT 1";
+            $statement = $this->db->query($sql);
+            $programminglanguage = $statement->fetch();
+            if(!empty($programminglanguage)){
+                $sql = "INSERT INTO `skills` (`User_id`,`ProgrammingLanguages_id`,`skillLevel`) VALUES (".$id.",".$programminglanguage['id'].",'0.5')";
+            } else {
+                $sql = "INSERT INTO `programminglanguages` (`name`) VALUES ('".$language."')";
+                $statement = $this->db->query($sql);
+                $last_id = $this->db->lastInsertId();
+
+                $sql = "INSERT INTO `skills` (`User_id`,`ProgrammingLanguages_id`,`skillLevel`) VALUES (".$id.",".$last_id.",'0.5')";
+            }
+
+            try {
+                $this->db->query($sql);
+            } catch(\Exception $e){
+                // ToDo
+            }
+        }
+
+        // Skills
+        $sql = "SELECT `ProgrammingLanguages`.`name` AS `name` FROM `skills` LEFT JOIN `ProgrammingLanguages` ON (`ProgrammingLanguages`.`id` = `skills`.`ProgrammingLanguages_id`) WHERE `skills`.`User_id`='".$_SESSION['user_id']."' ORDER BY `name` ASC";
+        $statement = $this->db->query($sql);
+        $skills = $statement->fetchAll();
+
+        $array = array('error' => $error, 'success' => $success, 'data' => $user = $this->getUserInfo($_SESSION['user_id']), 'skill' => $skills);
 
         return $array;
     }

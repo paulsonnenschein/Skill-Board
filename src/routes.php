@@ -126,10 +126,8 @@ $routes = function (\Klein\Klein $router) {
     $router->respond('POST', '/profile/edit', function($request, $response, $service, $app) {
         $user = new User($app->db);
 
-
-
         $service->render(__DIR__ . '/Views/editProfile.php', [
-            'user' => $user->getProfile($_SESSION['user_id'])
+            'user' => $user->setProfile($_SESSION['user_id'],$request->params(array('firstName','lastName','email','description','programmingLanguages','password','password2')))
         ]);
     });
 
