@@ -64,17 +64,19 @@
     <div class="container">
         <div><!-- Flashes -->
             <?php if(!empty($flashes = $this->flashes('error'))): ?>
-                <div class="alert alert-danger" role="alert">
-                    <?php foreach($flashes as $flash): ?>
-                        <?=$flash ?><br/>
-                    <?php endforeach; ?>
+                <div class="alert alert-danger" role="alert" style="position: fixed;">
+                    <?= implode('<br/>', $flashes); ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&nbsp;&times;</span>
+                    </button>
                 </div>
             <?php endif; ?>
             <?php if(!empty($flashes = $this->flashes('info'))): ?>
-                <div class="alert alert-info" role="alert">
-                    <?php foreach($flashes as $flash): ?>
-                        <?=$flash ?><br/>
-                    <?php endforeach; ?>
+                <div class="alert alert-info" role="alert" style="position: fixed;">
+                    <?= implode('<br/>', $flashes); ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&nbsp;&times;</span>
+                    </button>
                 </div>
             <?php endif; ?>
         </div>
