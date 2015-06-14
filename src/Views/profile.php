@@ -1,20 +1,22 @@
 <div class="jumbotron" id="jumboProfile">
     <div id="hovercard">
         <div id="avatar">
-            <img alt="" src="https://secure.gravatar.com/avatar/<?php echo $this->user['gravatar']; ?>?d=wavatar&s=150">
+            <img alt="" src="https://secure.gravatar.com/avatar/<?=$this->user['gravatar'];?>?d=wavatar&s=150">
         </div>
     </div>
     <div id="info">
         <div id="title">
             <h2>
-                <?php echo $this->escape($this->user['name']); ?>
+                <?=$this->escape($this->user['name']); ?>
                 <br/>
-                <a href="profile/edit">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-                <a href="project/new">
-                    <span class="glyphicon glyphicon-plus"></span>
-                </a>
+                <?php if($this->user['id'] === $_SESSION['user_id']): ?>
+                    <a href="profile/edit">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </a>
+                    <a href="project/new">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </a>
+                <?php endif; ?>
             </h2>
         </div>
     </div>
@@ -27,7 +29,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading"><h4>Beschreibung</h4></div>
                 <div class="panel-body">
-                    <p><?= nl2br($this->escape($this->user['description'])); ?></p>
+                    <p><?=nl2br($this->escape($this->user['description'])); ?></p>
                 </div>
             </div>
         </div>
@@ -43,19 +45,41 @@
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                         <div class="panel-body">
-                            <ul class="list-unstyled">
-                                <?php if (count($this->user['project']) > 0): ?>
+                            <?php if (count($this->user['project']) > 0): ?>
+                            <table class="table">
+                                <tbody>
                                     <?php foreach ($this->user['project'] as $project): ?>
-                                        <li>
-                                            <a href="project/<?= $this->escape($project['id']) ?>">
-                                                <?= $this->escape($project['name']) ?>
-                                            </a>
-                                        </li>
+                                        <tr>
+                                            <td>
+                                                <a href="project/<?= $this->escape($project['id']) ?>">
+                                                    <?=$this->escape($project['name']) ?>
+                                                </a>
+                                            </td>
+                                            <td>
+                                            <?php if($project['statusUser'] === 'DECLINED'): ?>
+                                                <span class="label label-danger">Du hast abgelehnt</span>
+                                            <?php elseif ($project['statusProject'] === 'DECLINED'): ?>
+                                                <span class="label label-danger">Du wurdest abgelehnt</span>
+                                            <?php elseif ($project['statusUser'] === 'ACCEPTED' && $project['statusProject'] === 'UNDECIDED'): ?>
+                                                <span class="label label-primary">Angefragt</span>
+                                            <?php elseif ($project['statusProject'] === 'ACCEPTED' && $project['statusUser'] === 'UNDECIDED' ): ?>
+                                                <a href="profile/respondproject/<?= $this->escape($project['id']) ?>/ACCEPTED" class="btn btn-success btn-xs">
+                                                    Annehmen
+                                                </a>
+                                                <a href="profile/respondproject/<?= $this->escape($project['id']) ?>/DECLINED" class="btn btn-danger btn-xs">
+                                                    Ablehnen
+                                                </a>
+                                            <?php elseif ($project['statusProject'] === 'ACCEPTED' && $project['statusUser'] === 'ACCEPTED'): ?>
+                                                <span class="label label-success">Teilnehmer</span>
+                                            <?php endif; ?>
+                                            </td>
+                                        </tr>
                                     <?php endforeach; ?>
-                                <?php else: ?>
-                                    <p>Keine Projekte!</p>
-                                <?php endif; ?>
-                            </ul>
+                                </tbody>
+                            </table>
+                            <?php else: ?>
+                                <p>Keine Projekte!</p>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -72,19 +96,28 @@
                     </div>
                     <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
                         <div class="panel-body">
-                            <ul class="list-unstyled">
-                                <?php if (count($this->user['match']) > 0): ?>
-                                    <?php foreach ($this->user['match'] as $match): ?>
-                                        <li>
+                            <?php if (count($this->user['match']) > 0): ?>
+                            <table class="table">
+                                <tbody>
+                                <?php foreach ($this->user['match'] as $match): ?>
+                                    <tr>
+                                        <td>
                                             <a href="project/<?= $this->escape($match['id']) ?>">
-                                                <?= $this->escape($match['name']) ?>
+                                                <?=$this->escape($match['name']) ?>
                                             </a>
-                                        </li>
-                                    <?php endforeach; ?>
-                                <?php else: ?>
-                                    <p>Keine passenden Projekte!</p>
-                                <?php endif; ?>
-                            </ul>
+                                        </td>
+                                        <td>
+                                            <a href="profile/applyproject/<?= $this->escape($match['id']) ?>" class="btn btn-primary btn-xs">
+                                                Anfragen
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                            <?php else: ?>
+                                <p>Keine passenden Projekte!</p>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -104,7 +137,7 @@
                         <div class="panel-body">
                             <p>
                                 <?php foreach ($this->user['skill'] as $skill): ?>
-                                    <kbd><?= $this->escape($skill['name']) ?></kbd>
+                                    <kbd><?=$this->escape($skill['name']) ?></kbd>
                                 <?php endforeach; ?>
                             </p>
                         </div>
