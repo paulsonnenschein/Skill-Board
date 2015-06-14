@@ -176,15 +176,17 @@ class UserHelpers
         $matches = $statement->fetchAll();
 
         // Projects
-        $sql = "SELECT `Project`.`id` AS `id`, `Project`.`name` AS `name` FROM `developer`
+        $sql = "SELECT `Project`.*, `developer`.* FROM `developer`
                 LEFT JOIN `User` ON (`User`.`id` = `developer`.`User_id`)
                 LEFT JOIN `Project` ON (`Project`.`id` = `developer`.`Project_id`)
-                WHERE `User`.`id` = " . $user['id'];
+                WHERE `User`.`id` = {$user['id']}
+                ORDER BY `developer`.statusUser, `developer`.statusProject;";
         $statement = $this->db->query($sql);
         $projects = $statement->fetchAll();
 
         // Output
         $array = [
+            'id' => $user['id'],
             'gravatar' => md5(strtolower(trim($user['email']))),
             'name' => $user['firstName'] . ' ' . $user['lastName'],
             'description' => $user['description'],
