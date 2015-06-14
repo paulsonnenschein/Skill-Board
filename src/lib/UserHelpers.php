@@ -170,7 +170,7 @@ class UserHelpers
                     SELECT `skills`.`ProgrammingLanguages_id` FROM `User`
                     JOIN `skills` ON (`skills`.`User_id` = `User`.`id`)
                     WHERE `User`.`id` = {$user['id']})
-                AND `Project`.`Owner_id` <> {$user['id']}
+                AND `Project`.`Owner_Id` <> {$user['id']}
                 AND (`developer`.`User_id` <> {$user['id']} OR `developer`.`User_id` IS NULL)";
 
         $statement = $this->db->query($sql);

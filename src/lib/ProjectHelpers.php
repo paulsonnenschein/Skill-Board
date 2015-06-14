@@ -123,10 +123,12 @@ class ProjectHelpers {
         $sql = "SELECT DISTINCT User.* FROM User
                 JOIN skills on skills.User_id = User.id
                 LEFT JOIN developer on developer.User_id = User.id
+                JOIN Project on Project.id = $projectId
                 WHERE skills.ProgrammingLanguages_id IN (
                     SELECT `requirements`.`ProgrammingLanguages_id` FROM `Project`
                     JOIN `requirements` ON (`requirements`.`Project_id` = `Project`.`id`)
                     WHERE `Project`.`id` = $projectId)
+                AND Project.Owner_Id <> developer.User_id
                 AND (developer.Project_id <> $projectId OR developer.Project_id IS NULL);";
 
         return $this->db->query($sql)->fetchAll();
