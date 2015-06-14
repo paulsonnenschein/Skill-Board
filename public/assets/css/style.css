@@ -301,3 +301,24 @@
     border-radius: 0 0 5px 5px;
     border-top: 0;
 }
+
+tr .symbols {
+  position: relative;
+  width: 0 !important;
+  padding: 0 !important;
+}
+
+tbody tr .symbols {
+  display: none;
+}
+
+tbody tr .symbols a {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+tbody tr:hover .symbols {
+  display: table-cell;
+}
