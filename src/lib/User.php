@@ -160,6 +160,7 @@ class User {
         $this->db->query($sql);
 
         foreach(explode(',',$data['programmingLanguages']) AS $language){
+            $language = trim($language);
             $sql = "SELECT `id` FROM `programminglanguages` WHERE `name` LIKE '".$language."' LIMIT 1";
             $statement = $this->db->query($sql);
             $programminglanguage = $statement->fetch();
