@@ -1,3 +1,5 @@
+<div class="container">
+
 <h1>Projekte</h1>
 
 <table class="table">
@@ -36,3 +38,4 @@ EOF;
 
 <a class="btn btn-primary" href="project/new">Neues Projekt erstellen</a>
 
+</div>

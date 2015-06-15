@@ -6,7 +6,7 @@
     <?php endforeach; ?>
     <h1>Project List </h1><br>
     <?php foreach($this->projectList as $project): ?>
-        <a href="project/<?= $project['id']?>"><?= $project['search']?></a><br>
+        <a href="project/view/<?= $project['id']?>"><?= $project['search']?></a><br>
 
     <?php endforeach; ?>
 </div>
