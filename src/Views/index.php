@@ -20,7 +20,7 @@
             <div class="col-lg-6">
                 <div class="panel panel-default" id="indexPanel">
                     <div class="panel-body">
-                        <h3>Finden Sie Mitarbeiter für dein Projekt</h3>
+                        <h3>Finden Sie Mitarbeiter für Ihr Projekt</h3>
                         <p>Finden Sie Mitarbeiter, die Ihren gewünschten Vorgaben entsprechen.</p>
                     </div>
                 </div>
