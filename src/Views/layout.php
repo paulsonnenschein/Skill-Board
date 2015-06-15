@@ -50,6 +50,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="">Home</a></li>
                     <li><a href="profile">Mein Profil</a></li>
+                    <li><a href="project">Meine Projekte</a></li>
                     <li><a href="search">Suche</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
