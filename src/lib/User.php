@@ -140,7 +140,7 @@ class User {
             if ($data['password'] != $data['password2']) {
                 $error[] = 'Passwörter sind nicht gleich.';
             } else {
-                $sql = "UPDATE `user` SET `password` = '" . password_hash($data['password'], PASSWORD_DEFAULT) . "' WHERE `id` = " . $id;
+                $sql = "UPDATE `User` SET `password` = '" . password_hash($data['password'], PASSWORD_DEFAULT) . "' WHERE `id` = " . $id;
                 if ($this->db->query($sql)) {
                     $success[] = "Das Passwort wurde geändert.";
                 } else {
@@ -149,7 +149,7 @@ class User {
             }
         }
 
-        $sql = "UPDATE `user` SET `firstName`='".$data['firstName']."', `lastName`='".$data['lastName']."', `email`='".$data['email']."', `description`='".$data['description']."' WHERE `id` = ".$id;
+        $sql = "UPDATE `User` SET `firstName`='".$data['firstName']."', `lastName`='".$data['lastName']."', `email`='".$data['email']."', `description`='".$data['description']."' WHERE `id` = ".$id;
         if($this->db->query($sql)){
             $success[] = 'Daten wurden erfolgreich gespeichert.';
         } else {
@@ -161,13 +161,13 @@ class User {
 
         foreach(explode(',',$data['programmingLanguages']) AS $language){
             $language = trim($language);
-            $sql = "SELECT `id` FROM `programminglanguages` WHERE `name` LIKE '".$language."' LIMIT 1";
+            $sql = "SELECT `id` FROM `ProgrammingLanguages` WHERE `name` LIKE '".$language."' LIMIT 1";
             $statement = $this->db->query($sql);
             $programminglanguage = $statement->fetch();
             if(!empty($programminglanguage)){
                 $sql = "INSERT INTO `skills` (`User_id`,`ProgrammingLanguages_id`,`skillLevel`) VALUES (".$id.",".$programminglanguage['id'].",'0.5')";
             } else {
-                $sql = "INSERT INTO `programminglanguages` (`name`) VALUES ('".$language."')";
+                $sql = "INSERT INTO `ProgrammingLanguages` (`name`) VALUES ('".$language."')";
                 $statement = $this->db->query($sql);
                 $last_id = $this->db->lastInsertId();
 
